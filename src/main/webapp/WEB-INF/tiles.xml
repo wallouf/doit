@@ -4,6 +4,9 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd"> 
        
 <tiles-definitions>
+    <definition name="index" template="/WEB-INF/view/index.jsp">
+        <put-attribute name="principal"  value="/WEB-INF/view/index.jsp" />
+    </definition>
     <definition name="signin" template="/WEB-INF/view/signin.jsp">
         <put-attribute name="principal"  value="/WEB-INF/view/signin.jsp" />
     </definition>

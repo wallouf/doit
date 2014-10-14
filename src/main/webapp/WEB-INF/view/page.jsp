@@ -17,44 +17,6 @@
         <title><spring:message code="titre.application"/></title>
     </head>
     <body>
-        <table>
-            <tbody>
-                <tr>
-                    <td valign="top">
-                        <table>
-                            <tbody>
-                                <tr><td>
-                                    <c:url value="/afficherListeCourses" var="url" />
-                                    <a href="${url}">
-                                        <spring:message code="titre.listecourses"/>
-                                    </a>
-                                </td></tr>
-                                <tr><td>
-                                    <c:url value="/afficherCreationListeCourses" var="url" />
-                                    <a href="${url}">
-                                        <spring:message code="titre.creation.elementcourses"/>
-                                    </a>
-                                </td></tr>
-                                <tr><td>
-                                    <c:url value="/afficherSuppressionListeCourses" var="url" />
-                                    <a href="${url}">
-                                        <spring:message code="titre.suppression.elementcourses"/>
-                                    </a>
-                                </td></tr>
-                                <tr><td>
-                                    <c:url value="/afficherModificationListeCourses" var="url" />
-                                    <a href="${url}">
-                                        <spring:message code="titre.modification.elementcourses"/>
-                                    </a>
-                                </td></tr>
-                            </tbody>
-                        </table>
-                    </td>
-                    <td valign="top">
-                        <tiles:insertAttribute name="principal" />
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <tiles:insertAttribute name="principal" />
     </body>
 </html>
