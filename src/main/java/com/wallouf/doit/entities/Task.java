@@ -33,4 +33,68 @@ public class Task {
     private Integer  notification;
     private String   color;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId( Integer id ) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName( String name ) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription( String description ) {
+        this.description = description;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState( String state ) {
+        this.state = state;
+    }
+
+    public DateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated( DateTime created ) {
+        this.created = created;
+    }
+
+    public DateTime getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline( DateTime deadline ) {
+        this.deadline = deadline;
+    }
+
+    public Integer getNotification() {
+        return notification;
+    }
+
+    public void setNotification( Integer notification ) {
+        this.notification = notification;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor( String color ) {
+        this.color = color;
+    }
+
 }
