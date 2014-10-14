@@ -4,7 +4,11 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
+<link href="<c:url value="/resources/css/jquery-ui.min.css" />" rel="stylesheet">
+<link href="<c:url value="/resources/css/jquery-ui.theme.min.css" />" rel="stylesheet">
+<link href="<c:url value="/resources/css/doit.generic.css" />" rel="stylesheet">
 <script src="<c:url value="/resources/js/jquery.js" />"></script>
+<script src="<c:url value="/resources/js/jquery-ui.min.js" />"></script>
 <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 <!DOCTYPE html>
 <html lang="en">
