@@ -22,8 +22,18 @@
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    <servlet>
+    	<servlet-name>TasksList</servlet-name>
+    	<display-name>TasksList</display-name>
+    	<description></description>
+    	<servlet-class>com.wallouf.doit.servlets.TasksList</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>servlet-dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+    	<servlet-name>TasksList</servlet-name>
+    	<url-pattern>/TasksList</url-pattern>
     </servlet-mapping>
 </web-app>
