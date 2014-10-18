@@ -32,6 +32,13 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/doit/">Do It!</a>
+        </div>
+      </div><!-- /.container -->
+    </nav><!-- /.navbar -->
 
 	<div class="container-fluid">
 		<div class="row">
