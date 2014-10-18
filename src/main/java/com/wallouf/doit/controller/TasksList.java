@@ -1,4 +1,4 @@
-package com.wallouf.doit.servlets;
+package com.wallouf.doit.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

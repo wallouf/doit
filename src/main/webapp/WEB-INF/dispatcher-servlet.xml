@@ -10,8 +10,8 @@
     http://www.springframework.org/schema/mvc/spring-mvc.xsd
     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 	<context:component-scan base-package="com.wallouf.doit" />
-    <tx:annotation-driven transaction-manager="transactionManager" />
     <mvc:resources mapping="/resources/**" location="/resources/" />
+    <tx:annotation-driven transaction-manager="transactionManager" />
     
     <mvc:annotation-driven />
     
@@ -20,22 +20,8 @@
         <property name="basename" value="classpath:messages" />
         <property name="defaultEncoding" value="UTF-8" />
     </bean>
-    
-    <bean   
-        class="org.springframework.web.servlet.view.UrlBasedViewResolver">  
-        <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />  
-    </bean>
-    
-    <bean id="tilesConfigurer"  
-        class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">  
-        <property name="definitions">  
-            <list>  
-                <value>/WEB-INF/tiles.xml</value>  
-            </list>  
-        </property>
-    </bean>
 
-    <bean id="viewResolver"
+  	<bean
         class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix">
             <value>/WEB-INF/view/</value>
@@ -61,6 +47,4 @@
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory" />
     </bean>
-    
-    
 </beans>
