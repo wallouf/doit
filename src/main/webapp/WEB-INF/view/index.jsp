@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
 <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/css/jquery-ui.min.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/css/jquery-ui.theme.min.css" />" rel="stylesheet">
@@ -9,8 +11,10 @@
 <script src="<c:url value="/resources/js/jquery.js" />"></script>
 <script src="<c:url value="/resources/js/jquery-ui.min.js" />"></script>
 <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="com.example.i18n.text" />
 <!DOCTYPE html>
-<html lang="en">
+<html lang="${language}">
   <head>
     <meta charset="utf-8">
     <meta name="description" content="">
@@ -37,49 +41,69 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Do It</a>
+          <a class="navbar-brand" href="#">Do It!</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Tasks</a></li>
-            <li><a href="#">Account</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about">Account</a></li>
+            <li><a href="#about">About Do It</a></li>
+            <li><a href="https://github.com/wallouf/doit">See on Github</a></li>
           </ul>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
     </nav><!-- /.navbar -->
-
-    <div class="container">
-
-      <div class="row row-offcanvas row-offcanvas-right">
-
-        <div class="col-xs-12 col-sm-9">
-          
-        </div><!--/span-->
-
-        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-          <div class="list-group">
-            <a href="#" class="list-group-item active">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-          </div>
-        </div><!--/span-->
-      </div><!--/row-->
-
-      <hr>
-
-      <footer>
-        <p>&copy; Wallouf 2014</p>
-      </footer>
-
-    </div>
+    
+	
+	<div class="container-fluid">
+		<div class="row">
+		    <div class="col-xs-12 col-sm-12	">
+				<div class="full-bloc-light">
+				  <h3>Manage your tasks every days easily with <b>Do It!</b></h3>
+				</div>
+				<p>
+					<button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Add a new task</button>
+				</p>
+				<table class="table table-striped">
+				  <thead>
+				  	<tr>
+				  		<th>#</th>
+				  		<th>Task</th>
+				  		<th class="hidden-xs">Description</th>
+				  		<th>Deadline</th>
+				  		<th>State</th>
+				  		<th class="hidden-xs">Date</th>
+				  		<th>Actions</th>
+				  	</tr>
+				  </thead>
+				  <tbody>
+				  	<tr>
+				  		<td class="vert-align">1</td>
+				  		<td class="vert-align">First task</td>
+				  		<td class="vert-align hidden-xs">bla bla bla blablabla ...</td>
+				  		<td class="vert-align">01 Nov 2014</td>
+				  		<td class="vert-align"><span class="label label-danger">To do</span></td>
+				  		<td class="vert-align hidden-xs">18 Oct 2014</td>
+				  		<td class="vert-align">
+							  <button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-ok"></span></button>
+							  <button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
+							  <button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></button>
+						</td>
+				  	</tr>
+				  </tbody>
+				</table>
+	     	</div>
+	     </div>
+	</div>
+	<div class="container-fluid">
+	   	<div class="row">
+	    	<div class="col-xs-12 col-sm-12	">
+				<hr>
+				<footer>
+				  <p>&copy; Wallouf 2014</p>
+				</footer>
+			</div>
+	    </div>
+	</div>
   </body>
 </html>

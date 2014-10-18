@@ -11,11 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping( "/" )
 public class TasksList {
-    private static final long serialVersionUID = 1L;
 
     @RequestMapping( method = RequestMethod.GET )
     public String afficherBonjour( final ModelMap pModel ) {
         return "index";
     }
-
 }
