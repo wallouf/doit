@@ -26,4 +26,13 @@
         <servlet-name>servlet-dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+    <filter>
+        <filter-name>ConnectedFilter</filter-name>
+        <filter-class>com.wallouf.doit.filters.ConnectedFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>ConnectedFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 </web-app>
