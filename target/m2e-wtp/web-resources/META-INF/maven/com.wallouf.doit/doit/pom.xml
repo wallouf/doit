@@ -61,6 +61,11 @@
 	    <version>5.0.1.Final</version>
 	</dependency>
 	<dependency>
+	    <groupId>org.apache.tiles</groupId>
+	    <artifactId>tiles-jsp</artifactId>
+	    <version>3.0.3</version>
+	</dependency>
+	<dependency>
 	    <groupId>org.slf4j</groupId>
 	    <artifactId>slf4j-log4j12</artifactId>
 	    <version>1.5.11</version>
