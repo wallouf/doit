@@ -22,7 +22,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Do It: Signin</title>
+    <title>Do It: Register a new account</title>
     
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -37,16 +37,13 @@
 		<div class="row">
 
       <form class="form-signin" role="form">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <input type="email" class="form-control" placeholder="Email address" required autofocus>
-        <input type="password" class="form-control" placeholder="Password" required>
-	    <div class="checkbox">
-	        <label class="checkbox">
-	          <input type="checkbox" value="remember-me"> Remember me
-	        </label>
-    	</div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        <a href="register" class="btn btn-lg btn-primary btn-block">Register</a>
+        <h2 class="form-signin-heading">Register a new account</h2>
+        <input type="name" class="form-control" placeholder="Account name" required autofocus>
+        <input type="email" class="form-control" placeholder="Email address" required>
+        <input type="passwordBis" class="form-control" placeholder="Password" required>
+        <input type="password" class="form-control" placeholder="Confirm password" required>
+        
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
       </form>
 
     	</div>
