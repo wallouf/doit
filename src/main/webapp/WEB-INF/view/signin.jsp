@@ -43,7 +43,7 @@
 	<div class="container-fluid">
 		<div class="row">
 
-      <form class="form-signin" role="form">
+      <form class="form-signin" role="form" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
         <input type="email" class="form-control" placeholder="Email address" required autofocus>
         <input type="password" class="form-control" placeholder="Password" required>

@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 public class ConnectedFilter implements Filter {
 
     public static final String ACCES_CONNEXION  = "/signin";
-    public static final String ATT_SESSION_USER = "sessionUtilisateur";
+    public static final String ATT_USER_SESSION = "userSession";
 
     /**
      * Default constructor.
@@ -53,7 +53,7 @@ public class ConnectedFilter implements Filter {
             return;
         }
 
-        if ( session.getAttribute( ATT_SESSION_USER ) == null ) {
+        if ( session.getAttribute( ATT_USER_SESSION ) == null ) {
             req.getRequestDispatcher( ACCES_CONNEXION ).forward( req, res );
         } else {
             // pass the request along the filter chain
