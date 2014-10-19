@@ -49,15 +49,36 @@
       		</div>
         </c:if>
 
-      <form class="form-signin" role="form" method="post">
+      <form class="form-signin" role="form" method="post" modelAttribute="connection">
         <h2 class="form-signin-heading">Please sign in</h2>
-        <input type="email" class="form-control" placeholder="Email address" required autofocus>
-        <input type="password" class="form-control" placeholder="Password" required>
+        <input name="email" type="email" class="form-control" placeholder="Email address" required autofocus>
+        <input name="password" type="password" class="form-control" placeholder="Password" required>
 	    <div class="checkbox">
 	        <label class="checkbox">
 	          <input type="checkbox" value="remember-me"> Remember me
 	        </label>
     	</div>
+    	<br>
+        <c:if test="${ !empty formErrors }">
+        	<c:forEach items="${formErrors }" var="error">
+        		<c:if test="${ !empty error }">
+		      		<div class="alert alert-danger alert-dismissible" role="alert">
+			      		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			      		<spring:message code="${error }" />
+		      		</div>
+        		</c:if>
+        	</c:forEach>
+        </c:if>
+        <c:if test="${ !empty serviceErrors }">
+        	<c:forEach items="${serviceErrors }" var="error">
+        		<c:if test="${ !empty error }">
+		      		<div class="alert alert-warning alert-dismissible" role="alert">
+			      		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			      		<spring:message code="${error }" />
+		      		</div>
+        		</c:if>
+        	</c:forEach>
+        </c:if>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         <a href="register" class="btn btn-lg btn-primary btn-block">Register</a>
       </form>

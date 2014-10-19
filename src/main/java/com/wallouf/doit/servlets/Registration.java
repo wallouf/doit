@@ -1,5 +1,7 @@
 package com.wallouf.doit.servlets;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -32,11 +34,17 @@ public class Registration {
     @RequestMapping( value = "/register", method = RequestMethod.POST )
     public String creer( @Valid @ModelAttribute( value = "creation" ) final RegisterUserForm pCreation,
             final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request,
-            HttpServletResponse response ) {
+            HttpServletResponse response ) throws IOException {
         service.creerUser( pCreation.getName(), pCreation.getPassword(), pCreation.getPasswordBis(),
                 pCreation.getEmail() );
         if ( service.getServiceErrors().isEmpty() && service.getFormErrors().isEmpty() ) {
             request.setAttribute( "creationResultMessage", "User.creation.success" );
+            try {
+                response.sendRedirect( request.getContextPath() + "/signin" );
+            } catch ( Exception e ) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
             return "signin";
         } else {
             request.setAttribute( "formErrors", service.getFormErrors() );

@@ -20,6 +20,8 @@ public class ServiceUser implements IServiceUser {
     private List<String>        formErrors                         = new ArrayList<String>();
 
     private static final String ALGO_CHIFFREMENT                   = "SHA-256";
+    final private String        ERROR_MESSAGE_userDoesntExists     = "User.connection.search.doesntExists";
+    final private String        ERROR_MESSAGE_passwordMatch        = "User.connection.password.match";
 
     final private String        ERROR_MESSAGE_alreadyExists        = "User.creation.alreadyExists";
     final private String        ERROR_MESSAGE_confirmationPassword = "User.creation.password.Confirmation";
@@ -57,6 +59,9 @@ public class ServiceUser implements IServiceUser {
 
     @Transactional
     public void creerUser( String pName, String pPassword, String pPasswordBis, String pEmail ) {
+        formErrors.clear();
+        serviceErrors.clear();
+
         checkName( pName );
         checkEmail( pEmail );
         checkPassword( pPassword );
@@ -128,4 +133,37 @@ public class ServiceUser implements IServiceUser {
         }
     }
 
+    private void comparePassword( String password, User user ) {
+        if ( !password.equalsIgnoreCase( user.getPassword() ) ) {
+            setServiceError( user.getPassword() );
+        }
+    }
+
+    private void resetErrorsMaps() {
+        formErrors.clear();
+        serviceErrors.clear();
+    }
+
+    public User connecterUser( String email, String password ) {
+        this.resetErrorsMaps();
+        checkEmail( email );
+        checkPassword( password );
+        if ( getFormErrors().isEmpty() ) {
+            User userRequired = rechercherUser( email );
+            if ( userRequired == null ) {
+                setServiceError( ERROR_MESSAGE_userDoesntExists );
+            }
+            if ( getServiceErrors().isEmpty() ) {
+                ConfigurablePasswordEncryptor passwordEncryptor = new ConfigurablePasswordEncryptor();
+                passwordEncryptor.setAlgorithm( ALGO_CHIFFREMENT );
+                passwordEncryptor.setPlainDigest( false );
+                String pPasswordEncrypt = passwordEncryptor.encryptPassword( password );
+                comparePassword( pPasswordEncrypt, userRequired );
+                if ( getServiceErrors().isEmpty() ) {
+                    return userRequired;
+                }
+            }
+        }
+        return null;
+    }
 }
