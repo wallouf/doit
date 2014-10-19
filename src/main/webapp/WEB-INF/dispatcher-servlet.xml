@@ -39,7 +39,7 @@
         <property name="dataSource" ref="dataSource" />
         <property name="jpaProperties">
   			<value>
-    			hibernate.dialect=org.hibernate.dialect.MySQLDialect
+    			hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
   			</value>
 		</property>
     </bean>

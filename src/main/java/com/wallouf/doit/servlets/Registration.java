@@ -32,13 +32,13 @@ public class Registration {
             final BindingResult pBindingResult, final ModelMap pModel ) {
 
         if ( !pBindingResult.hasErrors() ) {
-            if ( pCreation.checkPassword() ) {
-                service.creerUser( pCreation.getName(), pCreation.getPassword(), pCreation.getEmail() );
-            } else {
+            if ( !pCreation.checkPassword() ) {
+            } else if ( service.rechercherUser( pCreation.getEmail() ) != null ) {
 
+            } else {
+                service.creerUser( pCreation.getName(), pCreation.getPassword(), pCreation.getEmail() );
             }
         }
         return "register";
     }
-
 }

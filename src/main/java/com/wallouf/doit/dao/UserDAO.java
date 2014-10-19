@@ -17,8 +17,8 @@ import com.wallouf.doit.entities.User;
 
 @Repository
 public class UserDAO implements IUserDAO {
-    private static final String JPQL_SELECT_PAR_EMAIL = "SELECT u FROM doit_user u WHERE u.email=:email";
-    private static final String PARAM_EMAIL           = "email";
+    private static final String JPQL_SELECT_PAR_EMAIL = "select c from User c where c.email=?1";
+    private static final String PARAM_EMAIL           = "1";
 
     @PersistenceContext
     private EntityManager       entityManager;
