@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 @RequestMapping( "/" )
-public class TasksList {
+public class DisplayTasksList {
 
     @RequestMapping( method = RequestMethod.GET )
     public String afficherBonjour( final ModelMap pModel ) {

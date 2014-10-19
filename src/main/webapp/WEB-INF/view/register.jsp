@@ -43,13 +43,13 @@
 	<div class="container-fluid">
 		<div class="row">
 
-      <form class="form-signin" role="form">
+      <form class="form-signin" role="form"  modelAttribute="creation" method="post" action="register">
         <h2 class="form-signin-heading">Register a new account</h2>
-        <input type="name" class="form-control" placeholder="Account name" required autofocus>
-        <input type="email" class="form-control" placeholder="Email address" required>
-        <input type="passwordBis" class="form-control" placeholder="Password" required>
-        <input type="password" class="form-control" placeholder="Confirm password" required>
-        
+        <input name="name" type="text" class="form-control" placeholder="Account name" required autofocus>
+        <input name="email" type="email" class="form-control" placeholder="Email address" required>
+        <input name="password" type="password" class="form-control" placeholder="Password" required>
+        <input name="passwordBis" type="password" class="form-control" placeholder="Confirm password" required>
+        <br>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
       </form>
 
