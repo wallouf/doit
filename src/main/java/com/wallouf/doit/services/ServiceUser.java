@@ -3,6 +3,7 @@ package com.wallouf.doit.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jasypt.util.password.ConfigurablePasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,21 +15,24 @@ import com.wallouf.doit.entities.User;
 public class ServiceUser implements IServiceUser {
 
     @Autowired
-    private IUserDAO     dao;
-    private List<String> serviceErrors                      = new ArrayList<String>();
-    private List<String> formErrors                         = new ArrayList<String>();
-    final private String ERROR_MESSAGE_alreadyExists        = "User.creation.alreadyExists";
-    final private String ERROR_MESSAGE_confirmationPassword = "User.creation.password.Confirmation";
+    private IUserDAO            dao;
+    private List<String>        serviceErrors                      = new ArrayList<String>();
+    private List<String>        formErrors                         = new ArrayList<String>();
 
-    final private String ERROR_MESSAGE_nameLength           = "User.creation.name.Length";
-    final private String ERROR_MESSAGE_nameEmpty            = "User.creation.name.NotEmpty";
-    final private String ERROR_MESSAGE_emailLength          = "User.creation.email.Length";
-    final private String ERROR_MESSAGE_emailEmpty           = "User.creation.email.NotEmpty";
-    final private String ERROR_MESSAGE_emailPattern         = "User.creation.email.Pattern";
-    final private String ERROR_MESSAGE_passwordLength       = "User.creation.password.Length";
-    final private String ERROR_MESSAGE_passwordEmpty        = "User.creation.password.NotEmpty";
-    final private String ERROR_MESSAGE_passwordBisLength    = "User.creation.passwordBis.Length";
-    final private String ERROR_MESSAGE_passwordBisEmpty     = "User.creation.passwordBis.NotEmpty";
+    private static final String ALGO_CHIFFREMENT                   = "SHA-256";
+
+    final private String        ERROR_MESSAGE_alreadyExists        = "User.creation.alreadyExists";
+    final private String        ERROR_MESSAGE_confirmationPassword = "User.creation.password.Confirmation";
+
+    final private String        ERROR_MESSAGE_nameLength           = "User.creation.name.Length";
+    final private String        ERROR_MESSAGE_nameEmpty            = "User.creation.name.NotEmpty";
+    final private String        ERROR_MESSAGE_emailLength          = "User.creation.email.Length";
+    final private String        ERROR_MESSAGE_emailEmpty           = "User.creation.email.NotEmpty";
+    final private String        ERROR_MESSAGE_emailPattern         = "User.creation.email.Pattern";
+    final private String        ERROR_MESSAGE_passwordLength       = "User.creation.password.Length";
+    final private String        ERROR_MESSAGE_passwordEmpty        = "User.creation.password.NotEmpty";
+    final private String        ERROR_MESSAGE_passwordBisLength    = "User.creation.passwordBis.Length";
+    final private String        ERROR_MESSAGE_passwordBisEmpty     = "User.creation.passwordBis.NotEmpty";
 
     private void setServiceError( String message ) {
         serviceErrors.add( message );
@@ -65,9 +69,14 @@ public class ServiceUser implements IServiceUser {
                 setServiceError( ERROR_MESSAGE_confirmationPassword );
             }
             if ( getServiceErrors().isEmpty() ) {
+                ConfigurablePasswordEncryptor passwordEncryptor = new ConfigurablePasswordEncryptor();
+                passwordEncryptor.setAlgorithm( ALGO_CHIFFREMENT );
+                passwordEncryptor.setPlainDigest( false );
+                String pPasswordEncrypt = passwordEncryptor.encryptPassword( pPassword );
+
                 final User lUser = new User();
                 lUser.setName( pName );
-                lUser.setPassword( pPassword );
+                lUser.setPassword( pPasswordEncrypt );
                 lUser.setEmail( pEmail );
                 dao.creerUser( lUser );
             }
