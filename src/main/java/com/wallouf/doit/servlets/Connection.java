@@ -1,5 +1,7 @@
 package com.wallouf.doit.servlets;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -41,6 +43,13 @@ public class Connection {
 
         session.setAttribute( ATT_USER_SESSION, service.connecterUser( pConnect.getEmail(), pConnect.getPassword() ) );
         if ( service.getServiceErrors().isEmpty() && service.getFormErrors().isEmpty() ) {
+            try {
+                response.sendRedirect( request.getContextPath() + "/" );
+            } catch ( IOException e ) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
             return VIEW_VALID;
         } else {
             request.setAttribute( "formErrors", service.getFormErrors() );

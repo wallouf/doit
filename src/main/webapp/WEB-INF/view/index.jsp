@@ -41,7 +41,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/doit/">Do It!</a>
+          <a class="navbar-brand" href="<c:url value="/" />">Do It!</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -49,6 +49,9 @@
             <li><a href="#about">Account</a></li>
             <li><a href="#about">About Do It</a></li>
             <li><a href="https://github.com/wallouf/doit">See on Github</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href='<c:url value="/disconnect" />'><span class="glyphicon glyphicon-remove"></span> Disconnect</a></li>
           </ul>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->

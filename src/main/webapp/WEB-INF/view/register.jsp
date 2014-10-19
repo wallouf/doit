@@ -35,7 +35,7 @@
     <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="/doit/">Do It!</a>
+          <a class="navbar-brand" href="<c:url value="/" />">Do It!</a>
         </div>
       </div><!-- /.container -->
     </nav><!-- /.navbar -->

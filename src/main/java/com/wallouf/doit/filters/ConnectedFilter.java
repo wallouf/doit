@@ -48,13 +48,15 @@ public class ConnectedFilter implements Filter {
          * Non filtrage des ressources statiques
          */
         String chemin = req.getRequestURI().substring( req.getContextPath().length() );
-        if ( chemin.startsWith( "/resources" ) || chemin.startsWith( "/register" ) ) {
+        if ( chemin.startsWith( "/resources" ) || chemin.startsWith( "/register" ) || chemin.startsWith( "/signin" ) ) {
             chain.doFilter( request, response );
             return;
         }
 
         if ( session.getAttribute( ATT_USER_SESSION ) == null ) {
-            req.getRequestDispatcher( ACCES_CONNEXION ).forward( req, res );
+            // req.getRequestDispatcher( ACCES_CONNEXION ).forward( req, res );
+
+            res.sendRedirect( req.getContextPath() + "/signin" );
         } else {
             // pass the request along the filter chain
             chain.doFilter( request, response );
