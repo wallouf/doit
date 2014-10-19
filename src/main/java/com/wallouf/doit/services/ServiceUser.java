@@ -36,4 +36,8 @@ public class ServiceUser implements IServiceUser {
         dao.supprimerUser( lUser );
     }
 
+    public User rechercherUser( String email ) {
+        return dao.rechercherUser( email );
+    }
+
 }
