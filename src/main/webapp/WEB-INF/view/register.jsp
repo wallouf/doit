@@ -36,6 +36,15 @@
 
 	<div class="container-fluid">
 		<div class="row">
+        <c:if test="${ !empty creationResultMessage }">
+      		<div class="alert alert-success alert-dismissible vert-align" role="alert" style="text-align:center; ">
+	      		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	      		<spring:message code="${creationResultMessage }" /><br><br>
+	      		<c:if test="${ creationResultMessage == 'User.creation.success' }">
+	      			<a class="btn btn-primary" href='<c:url value="/signin" />'><span class="glyphicon glyphicon-lock"></span> Sign in</a>
+	      		</c:if>
+      		</div>
+        </c:if>
 
       <form class="form-signin" role="form"  modelAttribute="creation" method="post" action="register">
         <h2 class="form-signin-heading">Register a new account</h2>

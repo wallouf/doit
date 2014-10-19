@@ -39,18 +39,11 @@ public class Registration {
                 pCreation.getEmail() );
         if ( service.getServiceErrors().isEmpty() && service.getFormErrors().isEmpty() ) {
             request.setAttribute( "creationResultMessage", "User.creation.success" );
-            try {
-                response.sendRedirect( request.getContextPath() + "/signin" );
-            } catch ( Exception e ) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-            return "signin";
         } else {
             request.setAttribute( "formErrors", service.getFormErrors() );
             request.setAttribute( "serviceErrors", service.getServiceErrors() );
             request.setAttribute( "creationResultMessage", "User.creation.fail" );
-            return "register";
         }
+        return "register";
     }
 }

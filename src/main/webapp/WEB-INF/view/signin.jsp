@@ -36,12 +36,6 @@
 
 	<div class="container-fluid">
 		<div class="row">
-        <c:if test="${ !empty creationResultMessage }">
-      		<div class="alert alert-success alert-dismissible" role="alert" style="text-align:center; ">
-	      		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-	      		<spring:message code="${creationResultMessage }" />
-      		</div>
-        </c:if>
 
       <form class="form-signin" role="form" method="post" modelAttribute="connection">
         <h2 class="form-signin-heading">Please sign in</h2>

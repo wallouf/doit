@@ -23,9 +23,15 @@
 	   </ul>
 	   <ul class="nav navbar-nav navbar-right">
 	     <li><a href="#"><span class="glyphicon glyphicon-user"></span> <c:out value="${sessionScope.userSession.name}" /></a></li>
-	     <li><a href='<c:url value="/disconnect" />'><span class="glyphicon glyphicon-remove"></span> Disconnect</a></li>
+	     <li><a href='<c:url value="/disconnect" />'><span class="glyphicon glyphicon-off"></span> Disconnect</a></li>
 	   </ul>
 	 </div><!-- /.nav-collapse -->
+	 </c:if>
+     <c:if test="${empty sessionScope.userSession}">
+	   <ul class="nav navbar-nav navbar-right">
+	     <li><a href='<c:url value="/register" />'><span class="glyphicon glyphicon-plus"></span> Register</a></li>
+	     <li><a href='<c:url value="/signin" />'><span class="glyphicon glyphicon-lock"></span> Sign in</a></li>
+	   </ul>
 	 </c:if>
 	</div><!-- /.container -->
 </nav><!-- /.navbar -->
