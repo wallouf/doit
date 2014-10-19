@@ -33,15 +33,16 @@ public class Registration {
     public String creer( @Valid @ModelAttribute( value = "creation" ) final RegisterUserForm pCreation,
             final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request,
             HttpServletResponse response ) {
-        request.setAttribute( "error", "User.Pattern.creation.name" );
-
-        if ( !pBindingResult.hasErrors() ) {
-            if ( !pCreation.checkPassword() ) {
-            } else if ( service.rechercherUser( pCreation.getEmail() ) != null ) {
-            } else {
-                service.creerUser( pCreation.getName(), pCreation.getPassword(), pCreation.getEmail() );
-            }
+        service.creerUser( pCreation.getName(), pCreation.getPassword(), pCreation.getPasswordBis(),
+                pCreation.getEmail() );
+        if ( service.getServiceErrors().isEmpty() && service.getFormErrors().isEmpty() ) {
+            request.setAttribute( "creationResultMessage", "User.creation.success" );
+            return "signin";
+        } else {
+            request.setAttribute( "formErrors", service.getFormErrors() );
+            request.setAttribute( "serviceErrors", service.getServiceErrors() );
+            request.setAttribute( "creationResultMessage", "User.creation.fail" );
+            return "register";
         }
-        return "register";
     }
 }

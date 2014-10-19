@@ -50,15 +50,25 @@
         <input name="password" type="password" class="form-control" placeholder="Password" required>
         <input name="passwordBis" type="password" class="form-control" placeholder="Confirm password" required>
         <br>
-        <c:if test="${ !empty error }">
-      		<div class="alert alert-danger alert-dismissible" role="alert">
-	      		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-	      		<spring:message code="${error }" />
-      		</div>
-      		<div class="alert alert-danger alert-dismissible" role="alert">
-	      		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-	      		<spring:message code="${error }" />
-      		</div>
+        <c:if test="${ !empty formErrors }">
+        	<c:forEach items="${formErrors }" var="error">
+        		<c:if test="${ !empty error }">
+		      		<div class="alert alert-danger alert-dismissible" role="alert">
+			      		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			      		<spring:message code="${error }" />
+		      		</div>
+        		</c:if>
+        	</c:forEach>
+        </c:if>
+        <c:if test="${ !empty serviceErrors }">
+        	<c:forEach items="${serviceErrors }" var="error">
+        		<c:if test="${ !empty error }">
+		      		<div class="alert alert-warning alert-dismissible" role="alert">
+			      		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			      		<spring:message code="${error }" />
+		      		</div>
+        		</c:if>
+        	</c:forEach>
         </c:if>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
       </form>

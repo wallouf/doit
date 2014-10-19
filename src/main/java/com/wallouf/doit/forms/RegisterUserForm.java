@@ -1,34 +1,14 @@
 package com.wallouf.doit.forms;
 
-import javax.validation.constraints.Pattern;
-
-import org.hibernate.validator.constraints.NotEmpty;
 
 public class RegisterUserForm {
-
-    @NotEmpty
-    @Pattern( regexp = ".{0,49}" )
     private String name;
-    @NotEmpty
-    @Pattern( regexp = ".{0,46}" )
     private String password;
-    @NotEmpty
-    @Pattern( regexp = ".{0,46}" )
     private String passwordBis;
-    @NotEmpty
-    @Pattern( regexp = "([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)" )
     private String email;
 
-    public boolean checkPassword() {
-        if ( password.equals( passwordBis ) ) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public String getName() {
-        return name;
+        return name.trim();
     }
 
     public void setName( final String pName ) {

@@ -9,7 +9,11 @@ public interface IServiceUser {
 
     User rechercherUser( final String email );
 
-    void creerUser( final String pName, final String pPassword, final String pEmail );
+    void creerUser( final String pName, final String pPassword, String pPasswordBis, final String pEmail );
 
     void supprimerUser( final Integer pIdUser );
+
+    public List<String> getServiceErrors();
+
+    public List<String> getFormErrors();
 }
