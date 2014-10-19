@@ -134,8 +134,11 @@ public class ServiceUser implements IServiceUser {
     }
 
     private void comparePassword( String password, User user ) {
-        if ( !password.equalsIgnoreCase( user.getPassword() ) ) {
-            setServiceError( user.getPassword() );
+        ConfigurablePasswordEncryptor passwordEncryptor = new ConfigurablePasswordEncryptor();
+        passwordEncryptor.setAlgorithm( ALGO_CHIFFREMENT );
+        passwordEncryptor.setPlainDigest( false );
+        if ( !passwordEncryptor.checkPassword( password, user.getPassword() ) ) {
+            setServiceError( ERROR_MESSAGE_passwordMatch );
         }
     }
 
@@ -154,11 +157,7 @@ public class ServiceUser implements IServiceUser {
                 setServiceError( ERROR_MESSAGE_userDoesntExists );
             }
             if ( getServiceErrors().isEmpty() ) {
-                ConfigurablePasswordEncryptor passwordEncryptor = new ConfigurablePasswordEncryptor();
-                passwordEncryptor.setAlgorithm( ALGO_CHIFFREMENT );
-                passwordEncryptor.setPlainDigest( false );
-                String pPasswordEncrypt = passwordEncryptor.encryptPassword( password );
-                comparePassword( pPasswordEncrypt, userRequired );
+                comparePassword( password, userRequired );
                 if ( getServiceErrors().isEmpty() ) {
                     return userRequired;
                 }
