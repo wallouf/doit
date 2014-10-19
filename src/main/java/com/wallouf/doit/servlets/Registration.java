@@ -1,5 +1,7 @@
 package com.wallouf.doit.servlets;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +31,13 @@ public class Registration {
 
     @RequestMapping( value = "/register", method = RequestMethod.POST )
     public String creer( @Valid @ModelAttribute( value = "creation" ) final RegisterUserForm pCreation,
-            final BindingResult pBindingResult, final ModelMap pModel ) {
+            final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request,
+            HttpServletResponse response ) {
+        request.setAttribute( "error", "User.Pattern.creation.name" );
 
         if ( !pBindingResult.hasErrors() ) {
             if ( !pCreation.checkPassword() ) {
             } else if ( service.rechercherUser( pCreation.getEmail() ) != null ) {
-
             } else {
                 service.creerUser( pCreation.getName(), pCreation.getPassword(), pCreation.getEmail() );
             }

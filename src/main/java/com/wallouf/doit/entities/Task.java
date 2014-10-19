@@ -17,7 +17,7 @@ public class Task {
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
-    @Column( name = "IDOBJET" )
+    @Column( name = "id" )
     private Integer  id;
     private String   name;
     private String   description;
@@ -32,6 +32,7 @@ public class Task {
     private DateTime deadline;
     private Integer  notification;
     private String   color;
+    private Integer  position;
 
     public Integer getId() {
         return id;
