@@ -14,8 +14,8 @@
 	    </button>
 	    <a class="navbar-brand" href="<c:url value="/" />">Do It!</a>
 	 </div>
-     <c:if test="${!empty sessionScope.userSession}">
 	 <div id="navbar" class="collapse navbar-collapse">
+     <c:if test="${!empty sessionScope.userSession}">
 	   <ul class="nav navbar-nav">
 	     <li class="active"><a href="#">Tasks</a></li>
 	     <li><a href="#about">About Do It</a></li>
@@ -25,7 +25,6 @@
 	     <li><a href="#"><span class="glyphicon glyphicon-user"></span> <c:out value="${sessionScope.userSession.name}" /></a></li>
 	     <li><a href='<c:url value="/disconnect" />'><span class="glyphicon glyphicon-off"></span> Disconnect</a></li>
 	   </ul>
-	 </div><!-- /.nav-collapse -->
 	 </c:if>
      <c:if test="${empty sessionScope.userSession}">
 	   <ul class="nav navbar-nav navbar-right">
@@ -33,5 +32,6 @@
 	     <li><a href='<c:url value="/signin" />'><span class="glyphicon glyphicon-lock"></span> Sign in</a></li>
 	   </ul>
 	 </c:if>
+	 </div><!-- /.nav-collapse -->
 	</div><!-- /.container -->
 </nav><!-- /.navbar -->

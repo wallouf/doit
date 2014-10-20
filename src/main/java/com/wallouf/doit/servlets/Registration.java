@@ -42,7 +42,6 @@ public class Registration {
         } else {
             request.setAttribute( "formErrors", service.getFormErrors() );
             request.setAttribute( "serviceErrors", service.getServiceErrors() );
-            request.setAttribute( "creationResultMessage", "User.creation.fail" );
         }
         return "register";
     }
