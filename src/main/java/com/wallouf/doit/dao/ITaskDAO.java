@@ -8,13 +8,11 @@ public interface ITaskDAO {
 
     List<Task> findTasks();
 
-    Task findTask( final String email );
+    Task findTask( final Integer pTaskId );
 
     void createTask( final Task pTask );
 
     void editTask( final Task pTask );
-
-    void editTaskState( final Task pTask );
 
     void removeTask( final Task pTask );
 }
