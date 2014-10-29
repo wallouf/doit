@@ -59,8 +59,7 @@ public class ServiceUser implements IServiceUser {
 
     @Transactional
     public void creerUser( String pName, String pPassword, String pPasswordBis, String pEmail ) {
-        formErrors.clear();
-        serviceErrors.clear();
+        resetErrorsMaps();
 
         checkName( pName );
         checkEmail( pEmail );

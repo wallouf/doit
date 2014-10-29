@@ -22,7 +22,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Do It: Register a new account</title>
+    <title>Do It: Add a new task</title>
     
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -40,18 +40,27 @@
       		<div class="alert alert-success alert-dismissible vert-align" role="alert" style="text-align:center; ">
 	      		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 	      		<spring:message code="${creationResultMessage }" /><br><br>
-	      		<c:if test="${ creationResultMessage == 'User.creation.success' }">
-	      			<a class="btn btn-primary" href='<c:url value="/signin" />'><span class="glyphicon glyphicon-lock"></span> Sign in</a>
+	      		<c:if test="${ creationResultMessage == 'Task.creation.success' }">
+	      			<a class="btn btn-primary" href='<c:url value="/" />'><span class="glyphicon glyphicon-align-left"></span> Tasks list</a>
 	      		</c:if>
       		</div>
         </c:if>
 
-      <form class="form-signin" role="form"  modelAttribute="creation" method="post" action="register">
-        <h2 class="form-signin-heading">Register a new account</h2>
-        <input name="name" type="text" class="form-control" placeholder="Account name" required autofocus>
-        <input name="email" type="email" class="form-control" placeholder="Email address" required>
-        <input name="password" type="password" class="form-control" placeholder="Password" required>
-        <input name="passwordBis" type="password" class="form-control" placeholder="Confirm password" required>
+      <form class="form-signin" role="form"  modelAttribute="creation" method="post" action="createTask">
+        <h2 class="form-signin-heading">Add a new task</h2>
+        <input name="name" type="text" class="form-control" placeholder="Task name" required autofocus>
+        <textarea rows="5" name="description" class="form-control" placeholder="Task description"></textarea>
+        <div class="input-group" style="background-color:#FFF;">
+		  <input type="text" class="form-control" name="deadline_TEST" placeholder="Deadline date" readonly>
+		  <span class="input-group-btn">
+		    <button class="btn btn-primary form-control" type="button"><span class="glyphicon glyphicon-calendar"></span></button>
+		  </span>
+		</div>
+        <div class="checkbox">
+		  <label class="checkbox">
+		     <input name="notification" value="notification" type="checkbox"> Notifications ?
+		  </label>
+		</div>
         <br>
         <c:if test="${ !empty formErrors }">
         	<c:forEach items="${formErrors }" var="error">
@@ -73,7 +82,8 @@
         		</c:if>
         	</c:forEach>
         </c:if>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+        <button class="btn btn-lg btn-success btn-block" type="submit"><span class="glyphicon glyphicon-plus"></span> Add</button>
+        <a href="<c:url value="/" />" class="btn btn-lg btn-danger btn-block"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
       </form>
 
     	</div>

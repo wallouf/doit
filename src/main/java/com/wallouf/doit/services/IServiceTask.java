@@ -10,9 +10,11 @@ public interface IServiceTask {
 
     List<Task> findTasks();
 
-    Task findTask( final String name );
+    Task findTask( final Integer pTaskId );
 
-    void createTask( final Task pTask );
+    void createTask( final String name, final String description, final String state, final DateTime deadline,
+            final Integer notification,
+            final String color, final Integer position );
 
     void editTask( final Integer pIdTask, final String name, final String description, final String state,
             final DateTime deadline, final Integer notifications, final String color, final Integer position );
@@ -26,5 +28,9 @@ public interface IServiceTask {
     void editTaskDeadline( final Integer pIdTask, final DateTime deadline );
 
     void removeTask( final Integer pIdTask );
+
+    public List<String> getServiceErrors();
+
+    public List<String> getFormErrors();
 
 }

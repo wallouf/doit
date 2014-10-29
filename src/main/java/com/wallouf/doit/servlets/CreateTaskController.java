@@ -14,37 +14,35 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.wallouf.doit.forms.RegisterUserForm;
-import com.wallouf.doit.services.IServiceUser;
+import com.wallouf.doit.forms.CreateTaskForm;
+import com.wallouf.doit.services.IServiceTask;
 
-/**
- * Servlet implementation class Connection
- */
 @Controller
-public class Registration {
-    public static final String VIEW_SIGNIN          = "registerForm";
-    public static final String FORM_MESSAGE_SUCCESS = "User.creation.success";
+public class CreateTaskController {
+    public static final String FORM_VIEW            = "taskForm";
+    public static final String FORM_MESSAGE_SUCCESS = "Task.creation.success";
 
     @Autowired
-    private IServiceUser       service;
+    private IServiceTask       service;
 
-    @RequestMapping( value = "/register", method = RequestMethod.GET )
-    public String afficherBonjour( final ModelMap pModel ) {
-        return VIEW_SIGNIN;
+    @RequestMapping( value = "/createTask", method = RequestMethod.GET )
+    public String displayForm( final ModelMap pModel ) {
+        return FORM_VIEW;
     }
 
-    @RequestMapping( value = "/register", method = RequestMethod.POST )
-    public String creer( @Valid @ModelAttribute( value = "creation" ) final RegisterUserForm pCreation,
+    @RequestMapping( value = "/createTask", method = RequestMethod.POST )
+    public String create( @Valid @ModelAttribute( value = "creation" ) final CreateTaskForm pCreation,
             final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request,
             HttpServletResponse response ) throws IOException {
-        service.creerUser( pCreation.getName(), pCreation.getPassword(), pCreation.getPasswordBis(),
-                pCreation.getEmail() );
+        service.createTask( pCreation.getName(), pCreation.getDescription(), pCreation.getState(),
+                pCreation.getDeadline(),
+                pCreation.getNotification(), pCreation.getColor(), pCreation.getPosition() );
         if ( service.getServiceErrors().isEmpty() && service.getFormErrors().isEmpty() ) {
             request.setAttribute( "creationResultMessage", FORM_MESSAGE_SUCCESS );
         } else {
             request.setAttribute( "formErrors", service.getFormErrors() );
             request.setAttribute( "serviceErrors", service.getServiceErrors() );
         }
-        return VIEW_SIGNIN;
+        return FORM_VIEW;
     }
 }

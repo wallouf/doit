@@ -42,7 +42,7 @@
 				  <h3>Manage your tasks every days easily with <b>Do It!</b></h3>
 				</div>
 				<p>
-					<button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Add a new task</button>
+					<a href="<c:url value="/createTask" />" type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Add a new task</a>
 				</p>
 				<table class="table table-striped">
 				  <thead>

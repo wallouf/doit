@@ -23,7 +23,7 @@ import com.wallouf.doit.services.IServiceUser;
  */
 @Controller
 public class Connection {
-    public static final String VIEW_SIGNIN      = "signin";
+    public static final String VIEW_SIGNIN      = "signinForm";
     public static final String VIEW_VALID       = "index";
     public static final String ATT_USER_SESSION = "userSession";
 
