@@ -44,15 +44,25 @@ public class ServiceTask implements IServiceTask {
     }
 
     @Transactional( readOnly = true )
-    public List<Task> findTasks( final Integer pTaskUserId ) {
+    public List<Task> findTasks( final Object pUser ) {
         // TODO Auto-generated method stub
-        return dao.findTasks( pTaskUserId );
+        checkUser( pUser );
+        if ( getFormErrors().isEmpty() ) {
+            return dao.findTasks( ( (User) pUser ).getId() );
+        } else {
+            return null;
+        }
     }
 
     @Transactional( readOnly = true )
-    public Task findTask( final Integer pTaskId, final Integer pTaskUserId ) {
+    public Task findTask( final Integer pTaskId, final Object pUser ) {
         // TODO Auto-generated method stub
-        return dao.findTask( pTaskId, pTaskUserId );
+        checkUser( pUser );
+        if ( getFormErrors().isEmpty() ) {
+            return dao.findTask( pTaskId, ( (User) pUser ).getId() );
+        } else {
+            return null;
+        }
     }
 
     @Transactional

@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags" %>
 <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
 <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/css/jquery-ui.min.css" />" rel="stylesheet">
@@ -44,34 +45,48 @@
 				<p>
 					<a href="<c:url value="/createTask" />" type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Add a new task</a>
 				</p>
-				<table class="table table-striped">
-				  <thead>
-				  	<tr>
-				  		<th>#</th>
-				  		<th>Task</th>
-				  		<th class="hidden-xs">Description</th>
-				  		<th>Deadline</th>
-				  		<th>State</th>
-				  		<th class="hidden-xs">Date</th>
-				  		<th>Actions</th>
-				  	</tr>
-				  </thead>
-				  <tbody>
-				  	<tr>
-				  		<td class="vert-align">1</td>
-				  		<td class="vert-align">First task</td>
-				  		<td class="vert-align hidden-xs">bla bla bla blablabla ...</td>
-				  		<td class="vert-align">01 Nov 2014</td>
-				  		<td class="vert-align"><span class="label label-danger">To do</span></td>
-				  		<td class="vert-align hidden-xs">18 Oct 2014</td>
-				  		<td class="vert-align">
-							  <button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-ok"></span></button>
-							  <button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
-							  <button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></button>
-						</td>
-				  	</tr>
-				  </tbody>
-				</table>
+				<c:choose>
+					<c:when test="${!empty aTaskList }">
+						<table class="table table-striped">
+						  <thead>
+						  	<tr>
+						  		<th>#</th>
+						  		<th>Task</th>
+						  		<th class="hidden-xs">Description</th>
+						  		<th>Deadline</th>
+						  		<th>State</th>
+						  		<th class="hidden-xs">Date</th>
+						  		<th>Actions</th>
+						  	</tr>
+						  </thead>
+						  <tbody>
+						  	<c:forEach items="${aTaskList }" var="TaskObject">
+						  		<c:if test="${!empty TaskObject }">
+							  		<tr>
+								  		<td class="vert-align"><c:out value="${TaskObject.id }" /></td>
+								  		<td class="vert-align"><c:out value="${TaskObject.name }" /></td>
+								  		<td class="vert-align hidden-xs"><c:out value="${TaskObject.description }" /></td>
+								  		<td class="vert-align"><c:out value="${TaskObject.deadline }" /></td>
+								  		<td class="vert-align"><span class="label label-danger"><c:out value="${TaskObject.state }" /></span></td>
+								  		<td class="vert-align hidden-xs"><joda:format value="${TaskObject.created }" pattern="dd MMM yyyy"/></td>
+								  		<td class="vert-align">
+											  <button type="button" class="btn btn-no-bck btn-xs"><span class="glyphicon glyphicon-ok"></span></button>
+											  <button type="button" class="btn btn-no-bck btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
+											  <button type="button" class="btn btn-no-bck btn-xs"><span class="glyphicon glyphicon-remove"></span></button>
+										</td>
+								  	</tr>
+						  		</c:if>
+						  	</c:forEach>
+						  </tbody>
+						</table>
+					</c:when>
+					<c:otherwise>
+						<p>
+							<br />
+							<h5 class="text-warning">No tasks found! You can define your first task with the "Add a new task" green button! </h5>
+						</p>
+					</c:otherwise>
+				</c:choose>
 	     	</div>
 	     </div>
 	</div>
