@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
@@ -33,6 +35,9 @@ public class Task {
     private Integer  notification;
     private String   color;
     private Integer  position;
+    @ManyToOne
+    @JoinColumn( name = "owner_id" )
+    private User     owner;
 
     public Integer getId() {
         return id;
@@ -104,6 +109,14 @@ public class Task {
 
     public void setPosition( Integer position ) {
         this.position = position;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner( User owner ) {
+        this.owner = owner;
     }
 
 }

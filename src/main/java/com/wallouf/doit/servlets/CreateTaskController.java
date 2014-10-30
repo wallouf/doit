@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import com.wallouf.doit.services.IServiceTask;
 public class CreateTaskController {
     public static final String FORM_VIEW            = "taskForm";
     public static final String FORM_MESSAGE_SUCCESS = "Task.creation.success";
+    public static final String ATT_USER_SESSION     = "userSession";
 
     @Autowired
     private IServiceTask       service;
@@ -34,9 +36,11 @@ public class CreateTaskController {
     public String create( @Valid @ModelAttribute( value = "creation" ) final CreateTaskForm pCreation,
             final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request,
             HttpServletResponse response ) throws IOException {
+        HttpSession session = request.getSession();
         service.createTask( pCreation.getName(), pCreation.getDescription(), pCreation.getState(),
                 pCreation.getDeadline(),
-                pCreation.getNotification(), pCreation.getColor(), pCreation.getPosition() );
+                pCreation.getNotification(), pCreation.getColor(), pCreation.getPosition(),
+                session.getAttribute( ATT_USER_SESSION ) );
         if ( service.getServiceErrors().isEmpty() && service.getFormErrors().isEmpty() ) {
             request.setAttribute( "creationResultMessage", FORM_MESSAGE_SUCCESS );
         } else {

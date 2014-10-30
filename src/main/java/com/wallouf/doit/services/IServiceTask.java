@@ -8,13 +8,13 @@ import com.wallouf.doit.entities.Task;
 
 public interface IServiceTask {
 
-    List<Task> findTasks();
+    List<Task> findTasks( final Integer pTaskUserId );
 
-    Task findTask( final Integer pTaskId );
+    Task findTask( final Integer pTaskId, final Integer pTaskUserId );
 
     void createTask( final String name, final String description, final String state, final DateTime deadline,
             final Integer notification,
-            final String color, final Integer position );
+            final String color, final Integer position, final Object pUser );
 
     void editTask( final Integer pIdTask, final String name, final String description, final String state,
             final DateTime deadline, final Integer notifications, final String color, final Integer position );

@@ -19,7 +19,7 @@ public class TaskDAO implements ITaskDAO {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public List<Task> findTasks() {
+    public List<Task> findTasks( final Integer pTaskUserId ) {
         final CriteriaBuilder lCriteriaBuilder = entityManager.getCriteriaBuilder();
 
         final CriteriaQuery<Task> lCriteriaQuery = lCriteriaBuilder.createQuery( Task.class );
@@ -30,7 +30,7 @@ public class TaskDAO implements ITaskDAO {
         return lTypedQuery.getResultList();
     }
 
-    public Task findTask( Integer pTaskId ) {
+    public Task findTask( Integer pTaskId, final Integer pTaskUserId ) {
         return entityManager.find( Task.class, pTaskId );
     }
 

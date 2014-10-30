@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.wallouf.doit.dao.ITaskDAO;
 import com.wallouf.doit.entities.Task;
+import com.wallouf.doit.entities.User;
 
 @Service
 public class ServiceTask implements IServiceTask {
@@ -21,6 +22,7 @@ public class ServiceTask implements IServiceTask {
 
     private static final String DATE_PATTERN                    = "yyyy-MM-dd HH:mm:ss";
 
+    final private String        ERROR_MESSAGE_userEmpty         = "Task.creation.user.NotEmpty";
     final private String        ERROR_MESSAGE_nameLength        = "Task.creation.name.Length";
     final private String        ERROR_MESSAGE_nameEmpty         = "Task.creation.name.NotEmpty";
     final private String        ERROR_MESSAGE_notificationEmpty = "Task.creation.notification.NotEmpty";
@@ -42,15 +44,15 @@ public class ServiceTask implements IServiceTask {
     }
 
     @Transactional( readOnly = true )
-    public List<Task> findTasks() {
+    public List<Task> findTasks( final Integer pTaskUserId ) {
         // TODO Auto-generated method stub
-        return dao.findTasks();
+        return dao.findTasks( pTaskUserId );
     }
 
     @Transactional( readOnly = true )
-    public Task findTask( final Integer pTaskId ) {
+    public Task findTask( final Integer pTaskId, final Integer pTaskUserId ) {
         // TODO Auto-generated method stub
-        return dao.findTask( pTaskId );
+        return dao.findTask( pTaskId, pTaskUserId );
     }
 
     @Transactional
@@ -100,9 +102,10 @@ public class ServiceTask implements IServiceTask {
     @Transactional
     public void createTask( String name, String description, String state, DateTime deadline, Integer notification,
             String color,
-            Integer position ) {
+            Integer position, Object pUser ) {
         // TODO Auto-generated method stub
         resetErrorsMaps();
+        checkUser( pUser );
         checkName( name );
         notification = checkNotification( notification );
         if ( getFormErrors().isEmpty() ) {
@@ -112,7 +115,14 @@ public class ServiceTask implements IServiceTask {
             lTask.setNotification( notification );
             lTask.setState( "To do" );
             lTask.setCreated( new DateTime() );
+            lTask.setOwner( (User) pUser );
             dao.createTask( lTask );
+        }
+    }
+
+    private void checkUser( Object pUser ) {
+        if ( pUser == null || !pUser.getClass().equals( User.class ) ) {
+            setFormError( ERROR_MESSAGE_userEmpty );
         }
     }
 

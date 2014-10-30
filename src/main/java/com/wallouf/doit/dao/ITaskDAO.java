@@ -6,9 +6,9 @@ import com.wallouf.doit.entities.Task;
 
 public interface ITaskDAO {
 
-    List<Task> findTasks();
+    List<Task> findTasks( final Integer pTaskUserId );
 
-    Task findTask( final Integer pTaskId );
+    Task findTask( final Integer pTaskId, final Integer pTaskUserId );
 
     void createTask( final Task pTask );
 
