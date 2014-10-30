@@ -20,7 +20,7 @@ import com.wallouf.doit.services.IServiceTask;
  */
 @Controller
 @RequestMapping( "/" )
-public class DisplayTasksList {
+public class DisplayTasksListController {
     public static final String ATT_USER_SESSION = "userSession";
     public static final String ATT_TaskList     = "aTaskList";
 

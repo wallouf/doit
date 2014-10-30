@@ -8,6 +8,18 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/dispatcher-servlet.xml</param-value>
     </context-param>
+    <context-param>
+        <param-name>sTaskStateSuccess</param-name>
+        <param-value>Done</param-value>
+    </context-param>
+    <context-param>
+        <param-name>sTaskStateWarning</param-name>
+        <param-value>To do</param-value>
+    </context-param>
+    <context-param>
+        <param-name>sTaskStateDanger</param-name>
+        <param-value>Urgent</param-value>
+    </context-param>
 
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

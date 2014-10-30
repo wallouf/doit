@@ -67,7 +67,20 @@
 								  		<td class="vert-align"><c:out value="${TaskObject.name }" /></td>
 								  		<td class="vert-align hidden-xs"><c:out value="${TaskObject.description }" /></td>
 								  		<td class="vert-align"><c:out value="${TaskObject.deadline }" /></td>
-								  		<td class="vert-align"><span class="label label-danger"><c:out value="${TaskObject.state }" /></span></td>
+										<c:choose>
+											<c:when test="${TaskObject.state == initParam.sTaskStateSuccess }">
+								  				<td class="vert-align"><span class="label label-success"><spring:message code="Task.data.state.success" /></span></td>
+											</c:when>
+											<c:when test="${TaskObject.state == initParam.sTaskStateWarning }">
+								  				<td class="vert-align"><span class="label label-primary"><spring:message code="Task.data.state.warning" /></span></td>
+											</c:when>
+											<c:when test="${TaskObject.state == initParam.sTaskStateDanger }">
+								  				<td class="vert-align"><span class="label label-danger"><spring:message code="Task.data.state.danger" /></span></td>
+											</c:when>
+											<c:otherwise>
+								  				<td class="vert-align"><span class="label"><spring:message code="Task.data.state.none" /></span></td>
+											</c:otherwise>
+										</c:choose>
 								  		<td class="vert-align hidden-xs"><joda:format value="${TaskObject.created }" pattern="dd MMM yyyy"/></td>
 								  		<td class="vert-align">
 											  <button type="button" class="btn btn-no-bck btn-xs"><span class="glyphicon glyphicon-ok"></span></button>
