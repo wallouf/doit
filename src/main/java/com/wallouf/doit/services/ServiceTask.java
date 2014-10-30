@@ -6,6 +6,7 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.wallouf.doit.dao.ITaskDAO;
 import com.wallouf.doit.entities.Task;
@@ -38,42 +39,50 @@ public class ServiceTask implements IServiceTask {
         formErrors.add( message );
     }
 
+    @Transactional( readOnly = true )
     public List<Task> findTasks() {
         // TODO Auto-generated method stub
         return dao.findTasks();
     }
 
+    @Transactional( readOnly = true )
     public Task findTask( final Integer pTaskId ) {
         // TODO Auto-generated method stub
         return dao.findTask( pTaskId );
     }
 
+    @Transactional
     public void editTask( Integer pIdTask, String name, String description, String state, DateTime deadline,
             Integer notifications, String color, Integer position ) {
         // TODO Auto-generated method stub
 
     }
 
+    @Transactional
     public void editTaskState( Integer pIdTask, String state ) {
         // TODO Auto-generated method stub
 
     }
 
+    @Transactional
     public void editTaskPosition( Integer pIdTask, Integer position ) {
         // TODO Auto-generated method stub
 
     }
 
+    @Transactional
     public void editTaskColor( Integer pIdTask, String color ) {
         // TODO Auto-generated method stub
 
     }
 
+    @Transactional
     public void editTaskDeadline( Integer pIdTask, DateTime deadline ) {
         // TODO Auto-generated method stub
 
     }
 
+    @Transactional
     public void removeTask( Integer pIdTask ) {
         // TODO Auto-generated method stub
         final Task lTask = new Task();
@@ -86,6 +95,7 @@ public class ServiceTask implements IServiceTask {
         serviceErrors.clear();
     }
 
+    @Transactional
     public void createTask( String name, String description, String state, DateTime deadline, Integer notification,
             String color,
             Integer position ) {

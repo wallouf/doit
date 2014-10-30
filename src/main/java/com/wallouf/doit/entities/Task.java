@@ -98,4 +98,12 @@ public class Task {
         this.color = color;
     }
 
+    public Integer getPosition() {
+        return position;
+    }
+
+    public void setPosition( Integer position ) {
+        this.position = position;
+    }
+
 }
