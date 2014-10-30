@@ -15,13 +15,15 @@ import com.wallouf.doit.entities.Task;
 public class ServiceTask implements IServiceTask {
 
     @Autowired
-    private ITaskDAO     dao;
-    private List<String> serviceErrors                   = new ArrayList<String>();
-    private List<String> formErrors                      = new ArrayList<String>();
+    private ITaskDAO            dao;
+    private List<String>        serviceErrors                   = new ArrayList<String>();
+    private List<String>        formErrors                      = new ArrayList<String>();
 
-    final private String ERROR_MESSAGE_nameLength        = "Task.creation.name.Length";
-    final private String ERROR_MESSAGE_nameEmpty         = "Task.creation.name.NotEmpty";
-    final private String ERROR_MESSAGE_notificationEmpty = "Task.creation.notification.NotEmpty";
+    private static final String DATE_PATTERN                    = "yyyy-MM-dd HH:mm:ss";
+
+    final private String        ERROR_MESSAGE_nameLength        = "Task.creation.name.Length";
+    final private String        ERROR_MESSAGE_nameEmpty         = "Task.creation.name.NotEmpty";
+    final private String        ERROR_MESSAGE_notificationEmpty = "Task.creation.notification.NotEmpty";
 
     public List<String> getServiceErrors() {
         return serviceErrors;
@@ -109,6 +111,7 @@ public class ServiceTask implements IServiceTask {
             lTask.setDescription( description );
             lTask.setNotification( notification );
             lTask.setState( "To do" );
+            lTask.setCreated( new DateTime() );
             dao.createTask( lTask );
         }
     }

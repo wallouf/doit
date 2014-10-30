@@ -48,8 +48,8 @@
 
       <form class="form-signin" role="form"  modelAttribute="creation" method="post" action="createTask">
         <h2 class="form-signin-heading">Add a new task</h2>
-        <input name="name" type="text" class="form-control" placeholder="Task name" required autofocus>
-        <textarea rows="5" name="description" class="form-control" placeholder="Task description"></textarea>
+        <input tabindex="1" name="name" type="text" class="form-control" placeholder="Task name" required autofocus>
+        <textarea tabindex="2" rows="5" name="description" class="form-control" placeholder="Task description"></textarea>
         <div class="input-group" style="background-color:#FFF;">
 		  <input type="text" class="form-control" name="deadline_TEST" placeholder="Deadline date" readonly>
 		  <span class="input-group-btn">
