@@ -36,11 +36,10 @@ public class CreateTaskController {
     public String create( @Valid @ModelAttribute( value = "creation" ) final CreateTaskForm pCreation,
             final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request,
             HttpServletResponse response ) throws IOException {
-        HttpSession session = request.getSession();
         service.createTask( pCreation.getName(), pCreation.getDescription(), pCreation.getState(),
                 pCreation.getDeadline(),
                 pCreation.getNotification(), pCreation.getColor(), pCreation.getPosition(),
-                session.getAttribute( ATT_USER_SESSION ) );
+                request.getSession().getAttribute( ATT_USER_SESSION ) );
         if ( service.getServiceErrors().isEmpty() && service.getFormErrors().isEmpty() ) {
             request.setAttribute( "creationResultMessage", FORM_MESSAGE_SUCCESS );
         } else {

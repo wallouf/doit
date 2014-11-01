@@ -34,8 +34,10 @@
 
   <body>
     <c:import url="/WEB-INF/view/navbar.jsp" />
+    <c:import url="/WEB-INF/view/alertMessages.jsp" />
     
 	
+  	
 	<div class="container-fluid">
 		<div class="row">
 		    <div class="col-xs-12 col-sm-12	">
@@ -85,7 +87,7 @@
 								  		<td class="vert-align">
 											  <button type="button" class="btn btn-no-bck btn-xs"><span class="glyphicon glyphicon-ok"></span></button>
 											  <button type="button" class="btn btn-no-bck btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
-											  <button type="button" class="btn btn-no-bck btn-xs"><span class="glyphicon glyphicon-remove"></span></button>
+											  <a href='<c:url value="/deleteTask?taskId=${TaskObject.id }" />' onClick="return confirm('Do you really want to remove this Task?');" type="button" class="btn btn-no-bck btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
 										</td>
 								  	</tr>
 						  		</c:if>

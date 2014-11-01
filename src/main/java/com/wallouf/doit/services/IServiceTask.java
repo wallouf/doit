@@ -27,7 +27,7 @@ public interface IServiceTask {
 
     void editTaskDeadline( final Integer pIdTask, final DateTime deadline );
 
-    void removeTask( final Integer pIdTask );
+    void removeTask( final Integer pIdTask, final Object pUser );
 
     public List<String> getServiceErrors();
 

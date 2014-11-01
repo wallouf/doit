@@ -33,6 +33,7 @@
 
   <body>
     <c:import url="/WEB-INF/view/navbar.jsp" />
+    <c:import url="/WEB-INF/view/alertMessages.jsp" />
 
 	<div class="container-fluid">
 		<div class="row">

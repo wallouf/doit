@@ -46,6 +46,7 @@ public class ServiceTask implements IServiceTask {
     @Transactional( readOnly = true )
     public List<Task> findTasks( final Object pUser ) {
         // TODO Auto-generated method stub
+        resetErrorsMaps();
         checkUser( pUser );
         if ( getFormErrors().isEmpty() ) {
             return dao.findTasks( ( (User) pUser ).getId() );
@@ -56,6 +57,13 @@ public class ServiceTask implements IServiceTask {
 
     @Transactional( readOnly = true )
     public Task findTask( final Integer pTaskId, final Object pUser ) {
+        // TODO Auto-generated method stub
+        resetErrorsMaps();
+        return getTask( pTaskId, pUser );
+    }
+
+    @Transactional( readOnly = true )
+    private Task getTask( final Integer pTaskId, final Object pUser ) {
         // TODO Auto-generated method stub
         checkUser( pUser );
         if ( getFormErrors().isEmpty() ) {
@@ -97,11 +105,14 @@ public class ServiceTask implements IServiceTask {
     }
 
     @Transactional
-    public void removeTask( Integer pIdTask ) {
+    public void removeTask( Integer pIdTask, final Object pUser ) {
         // TODO Auto-generated method stub
-        final Task lTask = new Task();
-        lTask.setId( pIdTask );
-        dao.removeTask( lTask );
+        resetErrorsMaps();
+        if ( getTask( pIdTask, pUser ) != null ) {
+            final Task lTask = new Task();
+            lTask.setId( pIdTask );
+            dao.removeTask( lTask );
+        }
     }
 
     private void resetErrorsMaps() {
