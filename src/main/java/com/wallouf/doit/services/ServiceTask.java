@@ -22,6 +22,7 @@ public class ServiceTask implements IServiceTask {
 
     private static final String DATE_PATTERN                    = "yyyy-MM-dd HH:mm:ss";
 
+    final private String        ERROR_MESSAGE_taskNotFound      = "Task.search.NotFound";
     final private String        ERROR_MESSAGE_userEmpty         = "Task.creation.user.NotEmpty";
     final private String        ERROR_MESSAGE_nameLength        = "Task.creation.name.Length";
     final private String        ERROR_MESSAGE_nameEmpty         = "Task.creation.name.NotEmpty";
@@ -67,7 +68,11 @@ public class ServiceTask implements IServiceTask {
         // TODO Auto-generated method stub
         checkUser( pUser );
         if ( getFormErrors().isEmpty() ) {
-            return dao.findTask( pTaskId, ( (User) pUser ).getId() );
+            Task oTaskTemp = dao.findTask( pTaskId, ( (User) pUser ).getId() );
+            if ( oTaskTemp == null ) {
+                setFormError( ERROR_MESSAGE_taskNotFound );
+            }
+            return oTaskTemp;
         } else {
             return null;
         }
