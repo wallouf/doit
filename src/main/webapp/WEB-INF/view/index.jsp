@@ -49,7 +49,7 @@
 				</p>
 				<c:choose>
 					<c:when test="${!empty aTaskList }">
-						<table class="table table-striped">
+						<table class="table table-striped"  style="font-size: medium;">
 						  <thead>
 						  	<tr>
 						  		<th>#</th>
