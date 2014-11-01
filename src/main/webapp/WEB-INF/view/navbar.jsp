@@ -17,7 +17,7 @@
 	 <div id="navbar" class="collapse navbar-collapse">
      <c:if test="${!empty sessionScope.userSession}">
 	   <ul class="nav navbar-nav">
-	     <li class="active"><a href="#">Tasks</a></li>
+	     <li class="active"><a href='<c:url value="/" />'>Tasks</a></li>
 	     <li><a href="#about">About Do It</a></li>
 	     <li><a href="https://github.com/wallouf/doit">See on Github</a></li>
 	   </ul>

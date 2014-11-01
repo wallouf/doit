@@ -65,8 +65,8 @@
 						  	<c:forEach items="${aTaskList }" var="TaskObject">
 						  		<c:if test="${!empty TaskObject }">
 							  		<tr>
-								  		<td class="vert-align"><c:out value="${TaskObject.id }" /></td>
-								  		<td class="vert-align"><c:out value="${TaskObject.name }" /></td>
+								  		<td class="vert-align"><a href='<c:url value="/taskDetails?taskId=${TaskObject.id }" />'><c:out value="${TaskObject.id }" /></a></td>
+								  		<td class="vert-align"><a href='<c:url value="/taskDetails?taskId=${TaskObject.id }" />'><c:out value="${TaskObject.name }" /></a></td>
 								  		<td class="vert-align hidden-xs"><c:out value="${TaskObject.description }" /></td>
 								  		<td class="vert-align"><c:out value="${TaskObject.deadline }" /></td>
 										<c:choose>
@@ -85,9 +85,9 @@
 										</c:choose>
 								  		<td class="vert-align hidden-xs"><joda:format value="${TaskObject.created }" pattern="dd MMM yyyy"/></td>
 								  		<td class="vert-align">
-											  <button type="button" class="btn btn-no-bck btn-xs"><span class="glyphicon glyphicon-ok"></span></button>
-											  <button type="button" class="btn btn-no-bck btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
-											  <a href='<c:url value="/deleteTask?taskId=${TaskObject.id }" />' onClick="return confirm('Do you really want to remove this Task?');" type="button" class="btn btn-no-bck btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
+											  <button type="button" class="btn btn-no-bck btn-xs text-success"><span class="glyphicon glyphicon-ok"></span></button>
+											  <button type="button" class="btn btn-no-bck btn-xs text-warning"><span class="glyphicon glyphicon-pencil"></span></button>
+											  <a href='<c:url value="/deleteTask?taskId=${TaskObject.id }" />' onClick="return confirm('Do you really want to remove this Task?');" class="btn btn-no-bck btn-xs text-danger"><span class="glyphicon glyphicon-remove"></span></a>
 										</td>
 								  	</tr>
 						  		</c:if>
