@@ -1,6 +1,7 @@
 package com.wallouf.doit.services;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -21,6 +22,8 @@ public class ServiceTask implements IServiceTask {
     private List<String>        formErrors                      = new ArrayList<String>();
 
     private static final String DATE_PATTERN                    = "yyyy-MM-dd HH:mm:ss";
+
+    final private List<String>  TASK_STATE                      = Arrays.asList( "To do", "Done", "Urgent", "None" );
 
     final private String        ERROR_MESSAGE_taskNotFound      = "Task.search.NotFound";
     final private String        ERROR_MESSAGE_userEmpty         = "Task.creation.user.NotEmpty";
@@ -86,25 +89,31 @@ public class ServiceTask implements IServiceTask {
     }
 
     @Transactional
-    public void editTaskState( Integer pIdTask, String state ) {
+    public void editTaskState( Integer pIdTask, final Object pUser, String state ) {
+        // TODO Auto-generated method stub
+        resetErrorsMaps();
+        Task oTaskTemp = getTask( pIdTask, pUser );
+        if ( oTaskTemp != null ) {
+            state = checkState( state );
+            oTaskTemp.setState( state );
+            dao.editTask( oTaskTemp );
+        }
+    }
+
+    @Transactional
+    public void editTaskPosition( Integer pIdTask, final Object pUser, Integer position ) {
         // TODO Auto-generated method stub
 
     }
 
     @Transactional
-    public void editTaskPosition( Integer pIdTask, Integer position ) {
+    public void editTaskColor( Integer pIdTask, final Object pUser, String color ) {
         // TODO Auto-generated method stub
 
     }
 
     @Transactional
-    public void editTaskColor( Integer pIdTask, String color ) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Transactional
-    public void editTaskDeadline( Integer pIdTask, DateTime deadline ) {
+    public void editTaskDeadline( Integer pIdTask, final Object pUser, DateTime deadline ) {
         // TODO Auto-generated method stub
 
     }
@@ -157,6 +166,14 @@ public class ServiceTask implements IServiceTask {
             setFormError( ERROR_MESSAGE_nameEmpty );
         } else if ( pName.trim().length() > 50 ) {
             setFormError( ERROR_MESSAGE_nameLength );
+        }
+    }
+
+    private String checkState( String sState ) {
+        if ( !TASK_STATE.contains( sState ) ) {
+            return "None";
+        } else {
+            return sState;
         }
     }
 

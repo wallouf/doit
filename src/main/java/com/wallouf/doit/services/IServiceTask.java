@@ -19,13 +19,13 @@ public interface IServiceTask {
     void editTask( final Integer pIdTask, final String name, final String description, final String state,
             final DateTime deadline, final Integer notifications, final String color, final Integer position );
 
-    void editTaskState( final Integer pIdTask, final String state );
+    void editTaskState( final Integer pIdTask, final Object pUser, final String state );
 
-    void editTaskPosition( final Integer pIdTask, final Integer position );
+    void editTaskPosition( final Integer pIdTask, final Object pUser, final Integer position );
 
-    void editTaskColor( final Integer pIdTask, final String color );
+    void editTaskColor( final Integer pIdTask, final Object pUser, final String color );
 
-    void editTaskDeadline( final Integer pIdTask, final DateTime deadline );
+    void editTaskDeadline( final Integer pIdTask, final Object pUser, final DateTime deadline );
 
     void removeTask( final Integer pIdTask, final Object pUser );
 
