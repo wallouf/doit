@@ -37,15 +37,6 @@
 
 	<div class="container-fluid">
 		<div class="row">
-        <c:if test="${ !empty creationResultMessage }">
-      		<div class="alert alert-success alert-dismissible vert-align" role="alert" style="text-align:center; ">
-	      		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-	      		<spring:message code="${creationResultMessage }" /><br><br>
-	      		<c:if test="${ creationResultMessage == 'Task.creation.success' }">
-	      			<a class="btn btn-primary" href='<c:url value="/" />'><span class="glyphicon glyphicon-align-left"></span> Tasks list</a>
-	      		</c:if>
-      		</div>
-        </c:if>
 
       <form class="form-signin" role="form"  modelAttribute="creation" method="post" action="createTask">
         <h2 class="form-signin-heading">Add a new task</h2>

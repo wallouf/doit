@@ -20,9 +20,10 @@ import com.wallouf.doit.services.IServiceTask;
 
 @Controller
 public class CreateTaskController {
-    public static final String FORM_VIEW            = "taskForm";
-    public static final String FORM_MESSAGE_SUCCESS = "Task.creation.success";
-    public static final String ATT_USER_SESSION     = "userSession";
+    public static final String FORM_VIEW                 = "taskForm";
+    public static final String FORM_MESSAGE_SUCCESS      = "Task.creation.success";
+    public static final String FORM_MESSAGE_SUCCESS_NAME = "sAlertMessageSuccess";
+    public static final String ATT_USER_SESSION          = "userSession";
 
     @Autowired
     private IServiceTask       service;
@@ -41,7 +42,14 @@ public class CreateTaskController {
                 pCreation.getNotification(), pCreation.getColor(), pCreation.getPosition(),
                 request.getSession().getAttribute( ATT_USER_SESSION ) );
         if ( service.getServiceErrors().isEmpty() && service.getFormErrors().isEmpty() ) {
-            request.setAttribute( "creationResultMessage", FORM_MESSAGE_SUCCESS );
+            HttpSession session = request.getSession();
+            session.setAttribute( FORM_MESSAGE_SUCCESS_NAME, FORM_MESSAGE_SUCCESS );
+            try {
+                response.sendRedirect( request.getContextPath() + "/" );
+            } catch ( IOException e ) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         } else {
             request.setAttribute( "formErrors", service.getFormErrors() );
             request.setAttribute( "serviceErrors", service.getServiceErrors() );

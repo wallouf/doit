@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class RestrictionFilter
  */
+
 public class ConnectedFilter implements Filter {
 
     public static final String ACCES_CONNEXION  = "/signin";
