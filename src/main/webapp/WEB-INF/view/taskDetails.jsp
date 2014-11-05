@@ -47,7 +47,7 @@
 						<p>
 							<a href="<c:url value="/createTask" />" type="button" class="btn btn-success btn-responsive"><span class="glyphicon glyphicon-plus"></span> Add<span class="hidden-xs"> another Task</span></a>
 							<button onClick="doit_updateTaskDetailsState(<c:out value="${oTask.id }" />,'Done');" type="button" class="btn btn-success btn-responsive"><span class="glyphicon glyphicon-ok"></span> Done</button>
-							<button onClick="doit_displayTaskStateEditor(<c:out value="${oTask.id }" />);" type="button" class="btn btn-warning btn-responsive"><span class="glyphicon glyphicon-info-sign"></span> <span class="hidden-xs">Edit Task's </span>State</button>
+							<button onClick="doit_displayTaskStateEditorForDetails(<c:out value="${oTask.id }" />);" type="button" class="btn btn-warning btn-responsive"><span class="glyphicon glyphicon-info-sign"></span> <span class="hidden-xs">Edit Task's </span>State</button>
 							<a href="<c:url value="/" />" type="button" class="btn btn-warning btn-responsive"><span class="glyphicon glyphicon-pencil"></span> Edit<span class="hidden-xs"> Task</span></a>
 							<a href="<c:url value="/deleteTask?taskId=${oTask.id }" />" onClick="return confirm('Do you really want to remove this Task?');"  type="button" class="btn btn-danger btn-responsive"><span class="glyphicon glyphicon-remove"></span> Remove<span class="hidden-xs"> Task</span></a>
 						</p>
@@ -79,16 +79,16 @@
 							  		<td class="vert-align">State</td>
 									<c:choose>
 										<c:when test="${oTask.state == initParam.sTaskStateSuccess }">
-							  				<td id="taskDetails-State" class="vert-align"><span class="label label-success"><spring:message code="Task.data.state.success" /></span></td>
+							  				<td id="taskDetails-State" class="vert-align"><span data-task-state="Done" class="label label-success"><spring:message code="Task.data.state.success" /></span></td>
 										</c:when>
 										<c:when test="${oTask.state == initParam.sTaskStateWarning }">
-							  				<td id="taskDetails-State" class="vert-align"><span class="label label-primary"><spring:message code="Task.data.state.warning" /></span></td>
+							  				<td id="taskDetails-State" class="vert-align"><span data-task-state="To do" class="label label-primary"><spring:message code="Task.data.state.warning" /></span></td>
 										</c:when>
 										<c:when test="${oTask.state == initParam.sTaskStateDanger }">
-							  				<td id="taskDetails-State" class="vert-align"><span class="label label-danger"><spring:message code="Task.data.state.danger" /></span></td>
+							  				<td id="taskDetails-State" class="vert-align"><span data-task-state="Urgent" class="label label-danger"><spring:message code="Task.data.state.danger" /></span></td>
 										</c:when>
 										<c:otherwise>
-							  				<td id="taskDetails-State" class="vert-align"><span class="label label-info"><spring:message code="Task.data.state.none" /></span></td>
+							  				<td id="taskDetails-State" class="vert-align"><span data-task-state="None" class="label label-info"><spring:message code="Task.data.state.none" /></span></td>
 										</c:otherwise>
 									</c:choose>
 						  		</tr>
@@ -131,7 +131,7 @@
 	      	<span id="doit_TaskStateModal_form_id" data-task-id="-1"></span>
 	        <select class="col-sm-12" id="doit_TaskStateModal_form_state">
 			  <option value="Done" class="text-success">Done</option>
-			  <option value="To do" class="text-warning">To Do</option>
+			  <option value="To do" class="text-warning">To do</option>
 			  <option value="Urgent" class="text-danger">Urgent</option>
 			  <option value="None" class="">None</option>
 			</select>
