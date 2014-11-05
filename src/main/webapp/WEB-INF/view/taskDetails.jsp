@@ -128,14 +128,20 @@
 	        <h4 class="modal-title" id="doit_TaskStateModalLabel">Update Task State:</h4>
 	      </div>
 	      <div class="modal-body">
-	      	<span id="doit_TaskStateModal_form_id" data-task-id="-1"></span>
-	        <select class="col-sm-12" id="doit_TaskStateModal_form_state">
-			  <option value="Done" class="text-success">Done</option>
-			  <option value="To do" class="text-warning">To do</option>
-			  <option value="Urgent" class="text-danger">Urgent</option>
-			  <option value="None" class="">None</option>
-			</select>
-			<br />
+			<form role="form">
+			  <div class="form-group">
+		      	<input class="hide" id="doit_TaskStateModal_form_id" data-task-id="-1">
+				 <div class="form-group">
+				   	<label class="control-label" for="doit_TaskStateModal_form_state" style="font-size: medium;"><b>State: </b></label>
+					<select class="form-control vert-align" id="doit_TaskStateModal_form_state">
+					  <option value="Done" class="text-success">Done</option>
+					  <option value="To do" class="text-warning">To do</option>
+					  <option value="Urgent" class="text-danger">Urgent</option>
+					  <option value="None" class="">None</option>
+					</select>
+				 </div>
+			 	</div>
+			 </form>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
