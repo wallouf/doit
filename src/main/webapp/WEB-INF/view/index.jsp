@@ -58,7 +58,7 @@
 						  		<th class="hidden-xs">Description</th>
 						  		<th>Deadline</th>
 						  		<th>State</th>
-						  		<th class="hidden-xs">Date</th>
+						  		<th class="hidden-xs">Last update</th>
 						  		<th>Actions</th>
 						  	</tr>
 						  </thead>
@@ -88,7 +88,7 @@
 								  		<td class="vert-align">
 											  <button onClick="doit_updateTaskListState(<c:out value="${TaskObject.id }" />,'Done');" type="button" class="btn btn-no-bck btn-xs text-success"><span class="glyphicon glyphicon-ok"></span></button>
 											  <button type="button" class="btn btn-no-bck btn-xs text-warning" onClick="doit_displayTaskStateEditorForList(<c:out value="${TaskObject.id }" />);"><span class="glyphicon glyphicon-info-sign"></span></button>
-											  <button type="button" class="btn btn-no-bck btn-xs text-warning"><span class="glyphicon glyphicon-pencil"></span></button>
+											  <a href='<c:url value="/updateTask?taskId=${TaskObject.id }" />'  class="btn btn-no-bck btn-xs text-warning"><span class="glyphicon glyphicon-pencil"></span></a>
 											  <a href='<c:url value="/deleteTask?taskId=${TaskObject.id }" />' onClick="return confirm('Do you really want to remove this Task?');" class="btn btn-no-bck btn-xs text-danger"><span class="glyphicon glyphicon-remove"></span></a>
 										</td>
 								  	</tr>

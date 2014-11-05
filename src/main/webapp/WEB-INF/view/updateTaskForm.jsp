@@ -22,7 +22,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Do It: Add a new task</title>
+    <title>Do It: Edit a task</title>
     
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -37,22 +37,33 @@
 
 	<div class="container-fluid">
 		<div class="row">
-
-      <form class="form-signin" role="form"  modelAttribute="creation" method="post" action="createTask">
-        <h2 class="form-signin-heading">Add a new task</h2>
-        <input tabindex="1" name="name" type="text" class="form-control" placeholder="Task name" required autofocus>
-        <textarea tabindex="2" rows="5" name="description" class="form-control" placeholder="Task description"></textarea>
+		
+      <form class="form-signin" role="form"  modelAttribute="updateTask" method="post" action="updateTask">
+        <h2 class="form-signin-heading">Edit a task</h2>
+       	<input name="id" type="text" class="form-control hide" value='<c:out value="${sessionScope.oTaskToEdit.id }" />'>
+        <input tabindex="1" name="name" type="text" class="form-control" placeholder="Task name" required autofocus  value='<c:out value="${sessionScope.oTaskToEdit.name }" />'>
+        <textarea tabindex="2" rows="5" name="description" class="form-control" placeholder="Task description"><c:out value="${sessionScope.oTaskToEdit.description }" /></textarea>
         <div class="input-group" style="background-color:#FFF;">
-		  <input type="text" class="form-control" name="deadline_TEST" placeholder="Deadline date" readonly>
+		  <input type="text" class="form-control" name="deadline_TEST" placeholder="Deadline date" readonly  value='<c:out value="${sessionScope.oTaskToEdit.deadline }" />'>
 		  <span class="input-group-btn">
 		    <button class="btn btn-primary form-control" type="button"><span class="glyphicon glyphicon-calendar"></span></button>
 		  </span>
 		</div>
-        <div class="checkbox">
+		<br>
+		<div class="form-group">
+		   	<label class="control-label" for="doit_TaskStateModal_form_state" style="font-size: medium;"><b>State: </b></label>
+			<select class="form-control" name="state">
+			  <option value="Done" class="text-success" <c:if test="${sessionScope.oTaskToEdit.state == 'Done'}">selected</c:if>>Done</option>
+			  <option value="To do" class="text-warning" <c:if test="${sessionScope.oTaskToEdit.state == 'To do'}">selected</c:if>>To do</option>
+			  <option value="Urgent" class="text-danger" <c:if test="${sessionScope.oTaskToEdit.state == 'Urgent'}">selected</c:if>>Urgent</option>
+			  <option value="None" class="" <c:if test="${sessionScope.oTaskToEdit.state == 'None'}">selected</c:if>>None</option>
+			</select>
+		</div>
+        <!-- <div class="checkbox">
 		  <label class="checkbox">
 		     <input name="notification" value="notification" type="checkbox"> Notifications ?
 		  </label>
-		</div>
+		</div> -->
         <br>
         <c:if test="${ !empty formErrors }">
         	<c:forEach items="${formErrors }" var="error">
@@ -74,8 +85,8 @@
         		</c:if>
         	</c:forEach>
         </c:if>
-        <button class="btn btn-lg btn-success btn-block" type="submit"><span class="glyphicon glyphicon-plus"></span> Add</button>
-        <a href="<c:url value="/" />" class="btn btn-lg btn-danger btn-block"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
+        <button class="btn btn-lg btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+        <a href="<c:url value="/" /><c:out value="${sessionScope.sFromUrl }" />" class="btn btn-lg btn-danger btn-block"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
       </form>
 
     	</div>

@@ -48,7 +48,7 @@
 							<a href="<c:url value="/createTask" />" type="button" class="btn btn-success btn-responsive"><span class="glyphicon glyphicon-plus"></span> Add<span class="hidden-xs"> another Task</span></a>
 							<button onClick="doit_updateTaskDetailsState(<c:out value="${oTask.id }" />,'Done');" type="button" class="btn btn-success btn-responsive"><span class="glyphicon glyphicon-ok"></span> Done</button>
 							<button onClick="doit_displayTaskStateEditorForDetails(<c:out value="${oTask.id }" />);" type="button" class="btn btn-warning btn-responsive"><span class="glyphicon glyphicon-info-sign"></span> <span class="hidden-xs">Edit Task's </span>State</button>
-							<a href="<c:url value="/" />" type="button" class="btn btn-warning btn-responsive"><span class="glyphicon glyphicon-pencil"></span> Edit<span class="hidden-xs"> Task</span></a>
+							<a href='<c:url value="/updateTask?taskId=${oTask.id }&sFromUrl=taskDetails?taskId=${oTask.id }" />'   type="button" class="btn btn-warning btn-responsive"><span class="glyphicon glyphicon-pencil"></span> Edit<span class="hidden-xs"> Task</span></a>
 							<a href="<c:url value="/deleteTask?taskId=${oTask.id }" />" onClick="return confirm('Do you really want to remove this Task?');"  type="button" class="btn btn-danger btn-responsive"><span class="glyphicon glyphicon-remove"></span> Remove<span class="hidden-xs"> Task</span></a>
 						</p>
 						<table class="table table-striped" style="font-size: medium;">
@@ -93,7 +93,7 @@
 									</c:choose>
 						  		</tr>
 						  		<tr>
-							  		<td class="vert-align">Created</td>
+							  		<td class="vert-align">Last update</td>
 							  		<td class="vert-align"><joda:format value="${oTask.created }" pattern="dd MMM yyyy"/></td>
 						  		</tr>
 						  </tbody>

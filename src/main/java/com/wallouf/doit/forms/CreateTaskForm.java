@@ -3,6 +3,7 @@ package com.wallouf.doit.forms;
 import org.joda.time.DateTime;
 
 public class CreateTaskForm {
+    private Integer  id;
     private String   name;
     private String   description;
     private DateTime deadline;
@@ -10,6 +11,14 @@ public class CreateTaskForm {
     private Integer  notification;
     private String   color;
     private Integer  position;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId( Integer id ) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

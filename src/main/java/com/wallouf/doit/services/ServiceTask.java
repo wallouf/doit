@@ -29,6 +29,7 @@ public class ServiceTask implements IServiceTask {
     final private String        ERROR_MESSAGE_userEmpty         = "Task.creation.user.NotEmpty";
     final private String        ERROR_MESSAGE_nameLength        = "Task.creation.name.Length";
     final private String        ERROR_MESSAGE_nameEmpty         = "Task.creation.name.NotEmpty";
+    final private String        ERROR_MESSAGE_idNotFound        = "Task.edition.id.NotFound";
     final private String        ERROR_MESSAGE_notificationEmpty = "Task.creation.notification.NotEmpty";
 
     public List<String> getServiceErrors() {
@@ -83,9 +84,27 @@ public class ServiceTask implements IServiceTask {
 
     @Transactional
     public void editTask( Integer pIdTask, String name, String description, String state, DateTime deadline,
-            Integer notifications, String color, Integer position ) {
+            Integer notification, String color, Integer position, final Object pUser ) {
         // TODO Auto-generated method stub
-
+        // TODO Auto-generated method stub
+        resetErrorsMaps();
+        checkId( pIdTask );
+        checkUser( pUser );
+        checkName( name );
+        state = checkState( state );
+        notification = checkNotification( notification );
+        if ( getFormErrors().isEmpty() ) {
+            Task oTaskTemp = getTask( pIdTask, pUser );
+            if ( oTaskTemp != null ) {
+                oTaskTemp.setName( name );
+                oTaskTemp.setDescription( description );
+                oTaskTemp.setNotification( notification );
+                oTaskTemp.setState( state );
+                oTaskTemp.setCreated( new DateTime() );
+                oTaskTemp.setOwner( (User) pUser );
+                dao.editTask( oTaskTemp );
+            }
+        }
     }
 
     @Transactional
@@ -96,6 +115,7 @@ public class ServiceTask implements IServiceTask {
         if ( oTaskTemp != null ) {
             state = checkState( state );
             oTaskTemp.setState( state );
+            oTaskTemp.setCreated( new DateTime() );
             dao.editTask( oTaskTemp );
         }
     }
@@ -142,13 +162,14 @@ public class ServiceTask implements IServiceTask {
         resetErrorsMaps();
         checkUser( pUser );
         checkName( name );
+        state = checkState( state );
         notification = checkNotification( notification );
         if ( getFormErrors().isEmpty() ) {
             final Task lTask = new Task();
             lTask.setName( name );
             lTask.setDescription( description );
             lTask.setNotification( notification );
-            lTask.setState( "To do" );
+            lTask.setState( state );
             lTask.setCreated( new DateTime() );
             lTask.setOwner( (User) pUser );
             dao.createTask( lTask );
@@ -158,6 +179,12 @@ public class ServiceTask implements IServiceTask {
     private void checkUser( Object pUser ) {
         if ( pUser == null || !pUser.getClass().equals( User.class ) ) {
             setFormError( ERROR_MESSAGE_userEmpty );
+        }
+    }
+
+    private void checkId( Integer iTaskId ) {
+        if ( iTaskId == null || iTaskId <= 0 ) {
+            setFormError( ERROR_MESSAGE_idNotFound );
         }
     }
 

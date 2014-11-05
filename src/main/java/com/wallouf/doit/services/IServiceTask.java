@@ -17,7 +17,8 @@ public interface IServiceTask {
             final String color, final Integer position, final Object pUser );
 
     void editTask( final Integer pIdTask, final String name, final String description, final String state,
-            final DateTime deadline, final Integer notifications, final String color, final Integer position );
+            final DateTime deadline, final Integer notification, final String color, final Integer position,
+            final Object pUser );
 
     void editTaskState( final Integer pIdTask, final Object pUser, final String state );
 
