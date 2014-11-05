@@ -16,28 +16,29 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table( name = "doit_task" )
 public class Task {
+    private static final String DATE_PATTERN = "yyyy-MM-dd HH:mm";
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     @Column( name = "id" )
-    private Integer  id;
-    private String   name;
-    private String   description;
-    private String   state;
+    private Integer             id;
+    private String              name;
+    private String              description;
+    private String              state;
     @Column
     @Type( type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime" )
     @DateTimeFormat( style = "SS" )
-    private DateTime created;
+    private DateTime            created;
     @Column
     @Type( type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime" )
     @DateTimeFormat( style = "SS" )
-    private DateTime deadline;
-    private Integer  notification;
-    private String   color;
-    private Integer  position;
+    private DateTime            deadline;
+    private Integer             notification;
+    private String              color;
+    private Integer             position;
     @ManyToOne
     @JoinColumn( name = "owner_id" )
-    private User     owner;
+    private User                owner;
 
     public Integer getId() {
         return id;
@@ -119,4 +120,11 @@ public class Task {
         this.owner = owner;
     }
 
+    public String getDeadlineToString() {
+        if ( deadline != null ) {
+            return deadline.toString( org.joda.time.format.DateTimeFormat.forPattern( DATE_PATTERN ) );
+        } else {
+            return "";
+        }
+    }
 }

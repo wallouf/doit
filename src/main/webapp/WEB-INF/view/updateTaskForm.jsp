@@ -49,7 +49,8 @@
        		<span class="input-group-btn">
 		    <button id="doit-taskForm-datetimepicker-button" class="btn btn-primary form-control" type="button"><span class="glyphicon glyphicon-calendar"></span></button>
 			</span>
-		  <input id="doit-taskForm-datetimepicker" type="text" class="form-control" name="deadline" placeholder="Deadline date" readonly  value='<c:out value="${sessionScope.oTaskToEdit.deadline }" />'>
+			<input id="doit-taskForm-datetimepicker" type="text" class="form-control" name="deadline" placeholder="Deadline date" readonly  value='<c:catch var="taskException">${sessionScope.oTaskToEdit.deadlineToString }</c:catch><c:if test="${not empty taskException}">${sessionScope.oTaskToEdit.deadline }</c:if>'>
+			
 		  <span class="input-group-btn">
 		    <button onClick="$('#doit-taskForm-datetimepicker').val('');" class="btn btn-danger form-control" type="button"><span class="glyphicon glyphicon-remove"></span></button>
 		  </span>
