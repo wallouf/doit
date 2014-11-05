@@ -73,7 +73,7 @@
 						  		</tr>
 						  		<tr>
 							  		<td class="vert-align">Deadline</td>
-							  		<td class="vert-align"><c:out value="${oTask.deadline }" /></td>
+							  		<td class="vert-align"><joda:format value="${TaskObject.deadline }" pattern="dd MMM yyyy HH:mm"/></td>
 						  		</tr>
 						  		<tr id="taskDetailsStateRow" data-task-id="<c:out value="${oTask.id }" />">
 							  		<td class="vert-align">State</td>

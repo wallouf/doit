@@ -2,8 +2,6 @@ package com.wallouf.doit.services;
 
 import java.util.List;
 
-import org.joda.time.DateTime;
-
 import com.wallouf.doit.entities.Task;
 
 public interface IServiceTask {
@@ -12,12 +10,12 @@ public interface IServiceTask {
 
     Task findTask( final Integer pTaskId, final Object pUser );
 
-    void createTask( final String name, final String description, final String state, final DateTime deadline,
+    void createTask( final String name, final String description, final String state, final String deadline,
             final Integer notification,
             final String color, final Integer position, final Object pUser );
 
     void editTask( final Integer pIdTask, final String name, final String description, final String state,
-            final DateTime deadline, final Integer notification, final String color, final Integer position,
+            final String deadline, final Integer notification, final String color, final Integer position,
             final Object pUser );
 
     void editTaskState( final Integer pIdTask, final Object pUser, final String state );
@@ -26,7 +24,7 @@ public interface IServiceTask {
 
     void editTaskColor( final Integer pIdTask, final Object pUser, final String color );
 
-    void editTaskDeadline( final Integer pIdTask, final Object pUser, final DateTime deadline );
+    void editTaskDeadline( final Integer pIdTask, final Object pUser, final String deadline );
 
     void removeTask( final Integer pIdTask, final Object pUser );
 

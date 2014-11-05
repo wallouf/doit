@@ -1,16 +1,15 @@
 package com.wallouf.doit.forms;
 
-import org.joda.time.DateTime;
 
 public class CreateTaskForm {
-    private Integer  id;
-    private String   name;
-    private String   description;
-    private DateTime deadline;
-    private String   state;
-    private Integer  notification;
-    private String   color;
-    private Integer  position;
+    private Integer id;
+    private String  name;
+    private String  description;
+    private String  deadline;
+    private String  state;
+    private Integer notification;
+    private String  color;
+    private Integer position;
 
     public Integer getId() {
         return id;
@@ -52,11 +51,11 @@ public class CreateTaskForm {
         this.state = state;
     }
 
-    public DateTime getDeadline() {
+    public String getDeadline() {
         return deadline;
     }
 
-    public void setDeadline( DateTime deadline ) {
+    public void setDeadline( String deadline ) {
         this.deadline = deadline;
     }
 

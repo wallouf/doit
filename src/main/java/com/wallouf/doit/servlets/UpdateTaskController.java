@@ -73,7 +73,7 @@ public class UpdateTaskController {
             try {
                 response.sendRedirect( request.getContextPath() + "/"
                         + ( session.getAttribute( ATT_FROM_URL ) != null ? (String) session.getAttribute( ATT_FROM_URL )
-                                : DEFAULT_VIEW ) );
+                                : "" ) );
             } catch ( IOException e ) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

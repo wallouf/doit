@@ -69,7 +69,7 @@
 								  		<td class="vert-align"><a href='<c:url value="/taskDetails?taskId=${TaskObject.id }" />'><c:out value="${TaskObject.id }" /></a></td>
 								  		<td class="vert-align"><a href='<c:url value="/taskDetails?taskId=${TaskObject.id }" />'><c:out value="${TaskObject.name }" /></a></td>
 								  		<td class="vert-align hidden-xs"><c:out value="${TaskObject.description }" /></td>
-								  		<td class="vert-align"><c:out value="${TaskObject.deadline }" /></td>
+								  		<td class="vert-align"><joda:format value="${TaskObject.deadline }" pattern="dd MMM yyyy HH:mm"/></td>
 										<c:choose>
 											<c:when test="${TaskObject.state == initParam.sTaskStateSuccess }">
 								  				<td id="taskListRow-State" class="vert-align"><span data-task-state="Done" class="label label-success"><spring:message code="Task.data.state.success" /></span></td>

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,6 +31,7 @@ public class ServiceTask implements IServiceTask {
     final private String        ERROR_MESSAGE_nameLength        = "Task.creation.name.Length";
     final private String        ERROR_MESSAGE_nameEmpty         = "Task.creation.name.NotEmpty";
     final private String        ERROR_MESSAGE_idNotFound        = "Task.edition.id.NotFound";
+    final private String        ERROR_MESSAGE_deadlineFormat    = "Task.form.deadline.Format";
     final private String        ERROR_MESSAGE_notificationEmpty = "Task.creation.notification.NotEmpty";
 
     public List<String> getServiceErrors() {
@@ -83,7 +85,7 @@ public class ServiceTask implements IServiceTask {
     }
 
     @Transactional
-    public void editTask( Integer pIdTask, String name, String description, String state, DateTime deadline,
+    public void editTask( Integer pIdTask, String name, String description, String state, String deadline,
             Integer notification, String color, Integer position, final Object pUser ) {
         // TODO Auto-generated method stub
         // TODO Auto-generated method stub
@@ -91,6 +93,7 @@ public class ServiceTask implements IServiceTask {
         checkId( pIdTask );
         checkUser( pUser );
         checkName( name );
+        checkDeadline( deadline );
         state = checkState( state );
         notification = checkNotification( notification );
         if ( getFormErrors().isEmpty() ) {
@@ -102,6 +105,12 @@ public class ServiceTask implements IServiceTask {
                 oTaskTemp.setState( state );
                 oTaskTemp.setCreated( new DateTime() );
                 oTaskTemp.setOwner( (User) pUser );
+                if ( deadline != null && deadline.length() > 0 ) {
+                    oTaskTemp.setDeadline( DateTime.parse( getFullDeadline( deadline ),
+                            DateTimeFormat.forPattern( DATE_PATTERN ) ) );
+                } else {
+                    oTaskTemp.setDeadline( null );
+                }
                 dao.editTask( oTaskTemp );
             }
         }
@@ -133,7 +142,7 @@ public class ServiceTask implements IServiceTask {
     }
 
     @Transactional
-    public void editTaskDeadline( Integer pIdTask, final Object pUser, DateTime deadline ) {
+    public void editTaskDeadline( Integer pIdTask, final Object pUser, String deadline ) {
         // TODO Auto-generated method stub
 
     }
@@ -155,13 +164,14 @@ public class ServiceTask implements IServiceTask {
     }
 
     @Transactional
-    public void createTask( String name, String description, String state, DateTime deadline, Integer notification,
+    public void createTask( String name, String description, String state, String deadline, Integer notification,
             String color,
             Integer position, Object pUser ) {
         // TODO Auto-generated method stub
         resetErrorsMaps();
         checkUser( pUser );
         checkName( name );
+        checkDeadline( deadline );
         state = checkState( state );
         notification = checkNotification( notification );
         if ( getFormErrors().isEmpty() ) {
@@ -172,6 +182,10 @@ public class ServiceTask implements IServiceTask {
             lTask.setState( state );
             lTask.setCreated( new DateTime() );
             lTask.setOwner( (User) pUser );
+            if ( deadline != null && deadline.length() > 0 ) {
+                lTask.setDeadline( DateTime.parse( getFullDeadline( deadline ),
+                        DateTimeFormat.forPattern( DATE_PATTERN ) ) );
+            }
             dao.createTask( lTask );
         }
     }
@@ -185,6 +199,18 @@ public class ServiceTask implements IServiceTask {
     private void checkId( Integer iTaskId ) {
         if ( iTaskId == null || iTaskId <= 0 ) {
             setFormError( ERROR_MESSAGE_idNotFound );
+        }
+    }
+
+    private String getFullDeadline( String sDeadline ) {
+        return sDeadline + ":00";
+    }
+
+    private void checkDeadline( String sDeadline ) {
+        if ( sDeadline != null && sDeadline.length() > 0 ) {
+            if ( !sDeadline.matches( "\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}" ) ) {
+                setFormError( ERROR_MESSAGE_deadlineFormat );
+            }
         }
     }
 

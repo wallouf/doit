@@ -8,9 +8,11 @@
 <link href="<c:url value="/resources/css/jquery-ui.min.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/css/jquery-ui.theme.min.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/css/doit.generic.css" />" rel="stylesheet">
+<link href="<c:url value="/resources/css/jquery.datetimepicker.css" />" rel="stylesheet">
 <script src="<c:url value="/resources/js/jquery.js" />"></script>
 <script src="<c:url value="/resources/js/jquery-ui.min.js" />"></script>
 <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+<script src="<c:url value="/resources/js/jquery.datetimepicker.js" />"></script>
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="com.example.i18n.text" />
 <!DOCTYPE html>
@@ -43,10 +45,13 @@
        	<input name="id" type="text" class="form-control hide" value='<c:out value="${sessionScope.oTaskToEdit.id }" />'>
         <input tabindex="1" name="name" type="text" class="form-control" placeholder="Task name" required autofocus  value='<c:out value="${sessionScope.oTaskToEdit.name }" />'>
         <textarea tabindex="2" rows="5" name="description" class="form-control" placeholder="Task description"><c:out value="${sessionScope.oTaskToEdit.description }" /></textarea>
-        <div class="input-group" style="background-color:#FFF;">
-		  <input type="text" class="form-control" name="deadline_TEST" placeholder="Deadline date" readonly  value='<c:out value="${sessionScope.oTaskToEdit.deadline }" />'>
+        <div class="input-group">
+       		<span class="input-group-btn">
+		    <button id="doit-taskForm-datetimepicker-button" class="btn btn-primary form-control" type="button"><span class="glyphicon glyphicon-calendar"></span></button>
+			</span>
+		  <input id="doit-taskForm-datetimepicker" type="text" class="form-control" name="deadline" placeholder="Deadline date" readonly  value='<c:out value="${sessionScope.oTaskToEdit.deadline }" />'>
 		  <span class="input-group-btn">
-		    <button class="btn btn-primary form-control" type="button"><span class="glyphicon glyphicon-calendar"></span></button>
+		    <button onClick="$('#doit-taskForm-datetimepicker').val('');" class="btn btn-danger form-control" type="button"><span class="glyphicon glyphicon-remove"></span></button>
 		  </span>
 		</div>
 		<br>
@@ -93,3 +98,13 @@
     </div>
   </body>
 </html>
+<script>
+$( document ).ready(function() {
+	$('#doit-taskForm-datetimepicker').datetimepicker({
+	  format:'Y-m-d H:i'
+	});
+	$('#doit-taskForm-datetimepicker-button').click(function(){
+	  $('#doit-taskForm-datetimepicker').datetimepicker('show');
+	});
+});
+</script>
