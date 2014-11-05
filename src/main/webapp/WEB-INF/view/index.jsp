@@ -81,12 +81,13 @@
 								  				<td id="taskListRow-State" class="vert-align"><span class="label label-danger"><spring:message code="Task.data.state.danger" /></span></td>
 											</c:when>
 											<c:otherwise>
-								  				<td id="taskListRow-State" class="vert-align"><span class="label"><spring:message code="Task.data.state.none" /></span></td>
+								  				<td id="taskListRow-State" class="vert-align"><span class="label label-info"><spring:message code="Task.data.state.none" /></span></td>
 											</c:otherwise>
 										</c:choose>
 								  		<td class="vert-align hidden-xs"><joda:format value="${TaskObject.created }" pattern="dd MMM yyyy"/></td>
 								  		<td class="vert-align">
 											  <button onClick="doit_updateTaskListState(<c:out value="${TaskObject.id }" />,'Done');" type="button" class="btn btn-no-bck btn-xs text-success"><span class="glyphicon glyphicon-ok"></span></button>
+											  <button type="button" class="btn btn-no-bck btn-xs text-warning" onClick="doit_displayTaskStateEditor(<c:out value="${TaskObject.id }" />);"><span class="glyphicon glyphicon-info-sign"></span></button>
 											  <button type="button" class="btn btn-no-bck btn-xs text-warning"><span class="glyphicon glyphicon-pencil"></span></button>
 											  <a href='<c:url value="/deleteTask?taskId=${TaskObject.id }" />' onClick="return confirm('Do you really want to remove this Task?');" class="btn btn-no-bck btn-xs text-danger"><span class="glyphicon glyphicon-remove"></span></a>
 										</td>
@@ -115,6 +116,31 @@
 				</footer>
 			</div>
 	    </div>
+	</div>
+	
+	<div class="modal fade" id="doit_TaskStateModal" tabindex="-1" role="dialog" aria-labelledby="doit_TaskStateModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title" id="doit_TaskStateModalLabel">Update Task State:</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<span id="doit_TaskStateModal_form_id" data-task-id="-1"></span>
+	        <select class="col-sm-12" id="doit_TaskStateModal_form_state">
+			  <option value="Done" class="text-success">Done</option>
+			  <option value="To do" class="text-warning">To Do</option>
+			  <option value="Urgent" class="text-danger">Urgent</option>
+			  <option value="None" class="">None</option>
+			</select>
+			<br />
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+	        <button type="button" class="btn btn-success" onClick="doit_launchTaskStateEditorForList();">Save changes</button>
+	      </div>
+	    </div>
+	  </div>
 	</div>
   </body>
 </html>

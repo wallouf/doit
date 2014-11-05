@@ -14,6 +14,6 @@
 	<span class="label label-danger"><spring:message code="Task.data.state.danger" /></span>
 	</c:when>
 	<c:otherwise>
-	<span class="label"><spring:message code="Task.data.state.none" /></span>
+	<span class="label label-info"><spring:message code="Task.data.state.none" /></span>
 	</c:otherwise>
 </c:choose>

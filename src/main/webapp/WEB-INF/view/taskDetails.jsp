@@ -47,7 +47,7 @@
 						<p>
 							<a href="<c:url value="/createTask" />" type="button" class="btn btn-success btn-responsive"><span class="glyphicon glyphicon-plus"></span> Add<span class="hidden-xs"> another Task</span></a>
 							<button onClick="doit_updateTaskDetailsState(<c:out value="${oTask.id }" />,'Done');" type="button" class="btn btn-success btn-responsive"><span class="glyphicon glyphicon-ok"></span> Done</button>
-							<a href="<c:url value="/" />" type="button" class="btn btn-warning btn-responsive"><span class="glyphicon glyphicon-info-sign"></span> <span class="hidden-xs">Edit Task's </span>State</a>
+							<button onClick="doit_displayTaskStateEditor(<c:out value="${oTask.id }" />);" type="button" class="btn btn-warning btn-responsive"><span class="glyphicon glyphicon-info-sign"></span> <span class="hidden-xs">Edit Task's </span>State</button>
 							<a href="<c:url value="/" />" type="button" class="btn btn-warning btn-responsive"><span class="glyphicon glyphicon-pencil"></span> Edit<span class="hidden-xs"> Task</span></a>
 							<a href="<c:url value="/deleteTask?taskId=${oTask.id }" />" onClick="return confirm('Do you really want to remove this Task?');"  type="button" class="btn btn-danger btn-responsive"><span class="glyphicon glyphicon-remove"></span> Remove<span class="hidden-xs"> Task</span></a>
 						</p>
@@ -88,7 +88,7 @@
 							  				<td id="taskDetails-State" class="vert-align"><span class="label label-danger"><spring:message code="Task.data.state.danger" /></span></td>
 										</c:when>
 										<c:otherwise>
-							  				<td id="taskDetails-State" class="vert-align"><span class="label"><spring:message code="Task.data.state.none" /></span></td>
+							  				<td id="taskDetails-State" class="vert-align"><span class="label label-info"><spring:message code="Task.data.state.none" /></span></td>
 										</c:otherwise>
 									</c:choose>
 						  		</tr>
@@ -118,6 +118,31 @@
 				</footer>
 			</div>
 	    </div>
+	</div>
+	
+	<div class="modal fade" id="doit_TaskStateModal" tabindex="-1" role="dialog" aria-labelledby="doit_TaskStateModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title" id="doit_TaskStateModalLabel">Update Task State:</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<span id="doit_TaskStateModal_form_id" data-task-id="-1"></span>
+	        <select class="col-sm-12" id="doit_TaskStateModal_form_state">
+			  <option value="Done" class="text-success">Done</option>
+			  <option value="To do" class="text-warning">To Do</option>
+			  <option value="Urgent" class="text-danger">Urgent</option>
+			  <option value="None" class="">None</option>
+			</select>
+			<br />
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+	        <button type="button" class="btn btn-success" onClick="doit_launchTaskStateEditorForDetails();">Save changes</button>
+	      </div>
+	    </div>
+	  </div>
 	</div>
   </body>
 </html>
