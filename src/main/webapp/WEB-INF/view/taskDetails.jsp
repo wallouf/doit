@@ -12,6 +12,7 @@
 <script src="<c:url value="/resources/js/jquery.js" />"></script>
 <script src="<c:url value="/resources/js/jquery-ui.min.js" />"></script>
 <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+<script src="<c:url value="/resources/js/com.wallouf.doit.script.js" />"></script>
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="com.example.i18n.text" />
 <!DOCTYPE html>
@@ -45,7 +46,7 @@
 					<c:when test="${!empty oTask }">
 						<p>
 							<a href="<c:url value="/createTask" />" type="button" class="btn btn-success btn-responsive"><span class="glyphicon glyphicon-plus"></span> Add<span class="hidden-xs"> another Task</span></a>
-							<a href="<c:url value="/" />" type="button" class="btn btn-success btn-responsive"><span class="glyphicon glyphicon-ok"></span> Done</a>
+							<button onClick="doit_updateTaskDetailsState(<c:out value="${oTask.id }" />,'Done');" type="button" class="btn btn-success btn-responsive"><span class="glyphicon glyphicon-ok"></span> Done</button>
 							<a href="<c:url value="/" />" type="button" class="btn btn-warning btn-responsive"><span class="glyphicon glyphicon-info-sign"></span> <span class="hidden-xs">Edit Task's </span>State</a>
 							<a href="<c:url value="/" />" type="button" class="btn btn-warning btn-responsive"><span class="glyphicon glyphicon-pencil"></span> Edit<span class="hidden-xs"> Task</span></a>
 							<a href="<c:url value="/deleteTask?taskId=${oTask.id }" />" onClick="return confirm('Do you really want to remove this Task?');"  type="button" class="btn btn-danger btn-responsive"><span class="glyphicon glyphicon-remove"></span> Remove<span class="hidden-xs"> Task</span></a>
@@ -74,20 +75,20 @@
 							  		<td class="vert-align">Deadline</td>
 							  		<td class="vert-align"><c:out value="${oTask.deadline }" /></td>
 						  		</tr>
-						  		<tr>
+						  		<tr id="taskDetailsStateRow" data-task-id="<c:out value="${oTask.id }" />">
 							  		<td class="vert-align">State</td>
 									<c:choose>
 										<c:when test="${oTask.state == initParam.sTaskStateSuccess }">
-							  				<td class="vert-align"><span class="label label-success"><spring:message code="Task.data.state.success" /></span></td>
+							  				<td id="taskDetails-State" class="vert-align"><span class="label label-success"><spring:message code="Task.data.state.success" /></span></td>
 										</c:when>
 										<c:when test="${oTask.state == initParam.sTaskStateWarning }">
-							  				<td class="vert-align"><span class="label label-primary"><spring:message code="Task.data.state.warning" /></span></td>
+							  				<td id="taskDetails-State" class="vert-align"><span class="label label-primary"><spring:message code="Task.data.state.warning" /></span></td>
 										</c:when>
 										<c:when test="${oTask.state == initParam.sTaskStateDanger }">
-							  				<td class="vert-align"><span class="label label-danger"><spring:message code="Task.data.state.danger" /></span></td>
+							  				<td id="taskDetails-State" class="vert-align"><span class="label label-danger"><spring:message code="Task.data.state.danger" /></span></td>
 										</c:when>
 										<c:otherwise>
-							  				<td class="vert-align"><span class="label"><spring:message code="Task.data.state.none" /></span></td>
+							  				<td id="taskDetails-State" class="vert-align"><span class="label"><spring:message code="Task.data.state.none" /></span></td>
 										</c:otherwise>
 									</c:choose>
 						  		</tr>

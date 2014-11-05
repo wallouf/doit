@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
-    pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <div class="container-fluid">
 	<div class="row">
 		<c:if test="${!empty sAlertMessageSuccess }">
