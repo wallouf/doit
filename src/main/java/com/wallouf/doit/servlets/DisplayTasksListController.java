@@ -28,7 +28,7 @@ public class DisplayTasksListController {
     private IServiceTask       service;
 
     @RequestMapping( method = RequestMethod.GET )
-    public String afficherBonjour( final ModelMap pModel, HttpServletRequest request,
+    public String displayTaskList( final ModelMap pModel, HttpServletRequest request,
             HttpServletResponse response ) {
         HttpSession session = request.getSession();
         List<Task> aTaskList = service.findTasks( session.getAttribute( ATT_USER_SESSION ) );

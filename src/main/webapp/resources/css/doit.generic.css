@@ -7,6 +7,11 @@ body {
 	background-color: inherit;
 }
 
+.list-nostyle
+{
+	list-style: none;
+}
+
   
 @media (max-width: 768px) {
   .btn-responsive {
