@@ -45,7 +45,7 @@ public class TaskDAO implements ITaskDAO {
     }
 
     public void editTask( Task pTask ) {
-        entityManager.persist( pTask );
+        entityManager.merge( pTask );
     }
 
 }

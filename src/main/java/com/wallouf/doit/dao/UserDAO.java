@@ -57,8 +57,6 @@ public class UserDAO implements IUserDAO {
     }
 
     public void updateUser( User pUser ) {
-        entityManager.persist( pUser );
-
+        entityManager.merge( pUser );
     }
-
 }

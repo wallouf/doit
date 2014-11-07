@@ -99,6 +99,7 @@ public class ServiceUser implements IServiceUser {
         dao.supprimerUser( lUser );
     }
 
+    @Transactional( readOnly = true )
     public User rechercherUser( String email ) {
         return dao.rechercherUser( email );
     }
@@ -195,6 +196,7 @@ public class ServiceUser implements IServiceUser {
         return bIsSet;
     }
 
+    @Transactional
     public User updateUser( String pName, String pPasswordOld, String pPassword, String pPasswordBis, String pEmail,
             User pUser ) {
         // TODO Auto-generated method stub
@@ -202,6 +204,10 @@ public class ServiceUser implements IServiceUser {
         checkName( pName );
         checkEmail( pEmail );
         boolean bIsSet = checkUpdatePassword( pPasswordOld, pPassword, pPasswordBis, pUser );
+        User oTestUser = this.rechercherUser( pEmail );
+        if ( oTestUser != null && oTestUser.getId() != pUser.getId() ) {
+            setServiceError( ERROR_MESSAGE_alreadyExists );
+        }
         if ( getFormErrors().isEmpty() || getServiceErrors().isEmpty() ) {
             pUser.setName( pName );
             pUser.setEmail( pEmail );
