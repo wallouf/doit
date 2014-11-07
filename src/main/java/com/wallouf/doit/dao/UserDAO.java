@@ -46,6 +46,7 @@ public class UserDAO implements IUserDAO {
 
     public User rechercherUser( String email ) {
         Query requete = entityManager.createQuery( JPQL_SELECT_PAR_EMAIL );
+        requete.setMaxResults( 1 );
         requete.setParameter( PARAM_EMAIL, email );
         try {
             return (User) requete.getSingleResult();

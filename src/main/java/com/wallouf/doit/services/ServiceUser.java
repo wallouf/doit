@@ -208,11 +208,15 @@ public class ServiceUser implements IServiceUser {
         if ( oTestUser != null && oTestUser.getId() != pUser.getId() ) {
             setServiceError( ERROR_MESSAGE_alreadyExists );
         }
-        if ( getFormErrors().isEmpty() || getServiceErrors().isEmpty() ) {
+        if ( getFormErrors().isEmpty() && getServiceErrors().isEmpty() ) {
             pUser.setName( pName );
             pUser.setEmail( pEmail );
             if ( bIsSet ) {
-                pUser.setPassword( pPassword );
+                ConfigurablePasswordEncryptor passwordEncryptor = new ConfigurablePasswordEncryptor();
+                passwordEncryptor.setAlgorithm( ALGO_CHIFFREMENT );
+                passwordEncryptor.setPlainDigest( false );
+                String pPasswordEncrypt = passwordEncryptor.encryptPassword( pPassword );
+                pUser.setPassword( pPasswordEncrypt );
             }
             dao.updateUser( pUser );
         }
