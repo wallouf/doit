@@ -22,7 +22,7 @@
 	     <li><a href="https://github.com/wallouf/doit">See on Github</a></li>
 	   </ul>
 	   <ul class="nav navbar-nav navbar-right">
-	     <li><a href="#"><span class="glyphicon glyphicon-user"></span> <c:out value="${sessionScope.userSession.name}" /></a></li>
+	     <li><a href="<c:url value="/accountDetails?accountId=${sessionScope.userSession.id }" />"><span class="glyphicon glyphicon-user"></span> <c:out value="${sessionScope.userSession.name}" /></a></li>
 	     <li><a href='<c:url value="/disconnect" />'><span class="glyphicon glyphicon-off"></span> Disconnect</a></li>
 	   </ul>
 	 </c:if>
