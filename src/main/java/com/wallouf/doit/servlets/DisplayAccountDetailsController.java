@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.wallouf.doit.entities.User;
 import com.wallouf.doit.services.IServiceUser;
@@ -25,7 +24,7 @@ public class DisplayAccountDetailsController {
 
     @RequestMapping( value = "/accountDetails", method = RequestMethod.GET )
     public String afficherBonjour( final ModelMap pModel, HttpServletRequest request,
-            HttpServletResponse response, @RequestParam( value = "accountId" ) final Integer pAccountId ) {
+            HttpServletResponse response ) {
         HttpSession session = request.getSession();
         if ( session.getAttribute( ATT_USER_SESSION ) != null ) {
             try {

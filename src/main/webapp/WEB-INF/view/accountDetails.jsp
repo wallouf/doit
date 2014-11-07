@@ -45,8 +45,8 @@
 				<c:choose>
 					<c:when test="${!empty oAccount }">
 						<p>
-							<a href='<c:url value="/updateAccount?accountId=${oAccount.id }&sFromUrl=taskDetails?taskId=${oTask.id }" />'   type="button" class="btn btn-warning btn-responsive"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-							<a href="<c:url value="/deleteAccount?accountId=${oAccount.id }" />" onClick="return confirm('Do you really want to remove your account?');"  type="button" class="btn btn-danger btn-responsive"><span class="glyphicon glyphicon-remove"></span> Remove</a>
+							<a href='<c:url value="/updateAccount" />'   type="button" class="btn btn-warning btn-responsive"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+							<a href="<c:url value="/deleteAccount" />" onClick="return confirm('Do you really want to remove your account?');"  type="button" class="btn btn-danger btn-responsive"><span class="glyphicon glyphicon-remove"></span> Remove</a>
 						</p>
 						<table class="table table-striped" style="font-size: medium;">
 						  <thead>

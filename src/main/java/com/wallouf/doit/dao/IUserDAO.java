@@ -11,5 +11,7 @@ public interface IUserDAO {
 
     void creerUser( final User pUser );
 
+    void updateUser( final User pUser );
+
     void supprimerUser( final User pUser );
 }

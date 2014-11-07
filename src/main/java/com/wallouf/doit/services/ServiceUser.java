@@ -3,6 +3,8 @@ package com.wallouf.doit.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.jasypt.util.password.ConfigurablePasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,7 @@ public class ServiceUser implements IServiceUser {
     private IUserDAO            dao;
     private List<String>        serviceErrors                      = new ArrayList<String>();
     private List<String>        formErrors                         = new ArrayList<String>();
+    public static final String  ATT_USER_SESSION                   = "userSession";
 
     private static final String ALGO_CHIFFREMENT                   = "SHA-256";
     final private String        ERROR_MESSAGE_userDoesntExists     = "User.connection.search.doesntExists";
@@ -31,6 +34,8 @@ public class ServiceUser implements IServiceUser {
     final private String        ERROR_MESSAGE_emailLength          = "User.creation.email.Length";
     final private String        ERROR_MESSAGE_emailEmpty           = "User.creation.email.NotEmpty";
     final private String        ERROR_MESSAGE_emailPattern         = "User.creation.email.Pattern";
+    final private String        ERROR_MESSAGE_passwordOldLength    = "User.creation.passwordOld.Length";
+    final private String        ERROR_MESSAGE_passwordOldEmpty     = "User.creation.passwordOld.NotEmpty";
     final private String        ERROR_MESSAGE_passwordLength       = "User.creation.password.Length";
     final private String        ERROR_MESSAGE_passwordEmpty        = "User.creation.password.NotEmpty";
     final private String        ERROR_MESSAGE_passwordBisLength    = "User.creation.passwordBis.Length";
@@ -116,6 +121,14 @@ public class ServiceUser implements IServiceUser {
         }
     }
 
+    private void checkPasswordOld( String pPassword ) {
+        if ( pPassword == null || pPassword.trim().length() == 0 ) {
+            setFormError( ERROR_MESSAGE_passwordOldEmpty );
+        } else if ( pPassword.trim().length() > 46 ) {
+            setFormError( ERROR_MESSAGE_passwordOldLength );
+        }
+    }
+
     private void checkPassword( String pPassword ) {
         if ( pPassword == null || pPassword.trim().length() == 0 ) {
             setFormError( ERROR_MESSAGE_passwordEmpty );
@@ -163,5 +176,50 @@ public class ServiceUser implements IServiceUser {
             }
         }
         return null;
+    }
+
+    public boolean checkUpdatePassword( String pPasswordOld, String pPassword, String pPasswordBis, User pUser ) {
+        boolean bIsSet = false;
+        if ( pPasswordOld.trim().length() > 0 || pPassword.trim().length() > 0 || pPasswordBis.trim().length() > 0 ) {
+            bIsSet = true;
+            checkPasswordOld( pPasswordOld );
+            checkPassword( pPassword );
+            checkPasswordBis( pPasswordBis );
+            if ( getFormErrors().isEmpty() ) {
+                comparePassword( pPasswordOld, pUser );
+                if ( !pPassword.equals( pPasswordBis ) ) {
+                    setServiceError( ERROR_MESSAGE_confirmationPassword );
+                }
+            }
+        }
+        return bIsSet;
+    }
+
+    public User updateUser( String pName, String pPasswordOld, String pPassword, String pPasswordBis, String pEmail,
+            User pUser ) {
+        // TODO Auto-generated method stub
+        this.resetErrorsMaps();
+        checkName( pName );
+        checkEmail( pEmail );
+        boolean bIsSet = checkUpdatePassword( pPasswordOld, pPassword, pPasswordBis, pUser );
+        if ( getFormErrors().isEmpty() || getServiceErrors().isEmpty() ) {
+            pUser.setName( pName );
+            pUser.setEmail( pEmail );
+            if ( bIsSet ) {
+                pUser.setPassword( pPassword );
+            }
+            dao.updateUser( pUser );
+        }
+        return pUser;
+    }
+
+    public User getActualUser( HttpServletRequest request ) {
+        // TODO Auto-generated method stub
+        try {
+            return (User) request.getSession().getAttribute( ATT_USER_SESSION );
+        } catch ( Exception e ) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
