@@ -36,10 +36,10 @@
 		<div class="row">
         <c:if test="${ !empty creationResultMessage }">
       		<div class="alert alert-success alert-dismissible vert-align" role="alert" style="text-align:center; ">
-	      		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	      		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only"><spring:message code="HMI.GENERIC.BUTTON.CLOSE" /></span></button>
 	      		<spring:message code="${creationResultMessage }" /><br><br>
 	      		<c:if test="${ creationResultMessage == 'User.creation.success' }">
-	      			<a class="btn btn-primary" href='<c:url value="/signin" />'><span class="glyphicon glyphicon-lock"></span> Sign in</a>
+	      			<a class="btn btn-primary" href='<c:url value="/signin" />'><span class="glyphicon glyphicon-lock"></span> <spring:message code="HMI.SIGNIN.BUTTON.SIGNIN" /></a>
 	      		</c:if>
       		</div>
         </c:if>
@@ -55,7 +55,7 @@
         	<c:forEach items="${formErrors }" var="error">
         		<c:if test="${ !empty error }">
 		      		<div class="alert alert-danger alert-dismissible" role="alert">
-			      		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			      		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only"><spring:message code="HMI.GENERIC.BUTTON.CLOSE" /></span></button>
 			      		<spring:message code="${error }" />
 		      		</div>
         		</c:if>
@@ -65,7 +65,7 @@
         	<c:forEach items="${serviceErrors }" var="error">
         		<c:if test="${ !empty error }">
 		      		<div class="alert alert-warning alert-dismissible" role="alert">
-			      		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			      		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only"><spring:message code="HMI.GENERIC.BUTTON.CLOSE" /></span></button>
 			      		<spring:message code="${error }" />
 		      		</div>
         		</c:if>

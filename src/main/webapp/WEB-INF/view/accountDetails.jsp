@@ -43,7 +43,7 @@
 					<c:when test="${!empty oAccount }">
 						<p>
 							<a href='<c:url value="/updateAccount" />'   type="button" class="btn btn-warning btn-responsive"><span class="glyphicon glyphicon-pencil"></span> <spring:message code="HMI.GENERIC.BUTTON.EDIT" /></a>
-							<a href="<c:url value="/deleteAccount" />" onClick="return confirm('Do you really want to remove your account?');"  type="button" class="btn btn-danger btn-responsive"><span class="glyphicon glyphicon-remove"></span> <spring:message code="HMI.GENERIC.BUTTON.REMOVE" /></a>
+							<a href="<c:url value="/deleteAccount" />" onClick="return confirm('<spring:message code="HMI.USER.FORM.REMOVE.CONFIRMATION" />');"  type="button" class="btn btn-danger btn-responsive"><span class="glyphicon glyphicon-remove"></span> <spring:message code="HMI.GENERIC.BUTTON.REMOVE" /></a>
 						</p>
 						<table class="table table-striped" style="font-size: medium;">
 						  <thead>

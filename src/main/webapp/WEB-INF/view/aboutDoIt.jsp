@@ -21,7 +21,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Do It: About</title>
+    <title>Do It: <spring:message code="HMI.ABOUT.TEXT.HEADER" /></title>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -37,34 +37,34 @@
 		<div class="row">
 		    <div class="col-xs-12 col-sm-12	">
 				<div class="full-bloc-light">
-				  <h2><b class="text-primary">Do It!</b> A simple application to manage all your tasks!</h2>
+				  <h2><b class="text-primary">Do It!</b> <spring:message code="HNI.ABOUT.DESCRIPTION.SLOGAN" /></h2>
 				</div>
 				<div class="page-header">
-					<h3 class="media-heading text-info">What for?</h3>
+					<h3 class="media-heading text-info"><spring:message code="HNI.ABOUT.DESCRIPTION.HEADER1" /></h3>
 				</div>
 				<p>
-					<h4 class="media-heading text-primary"><b><span class="glyphicon glyphicon-pushpin"></span> Do It!</b></h4>
+					<h4 class="media-heading text-primary"><b><span class="glyphicon glyphicon-pushpin"></span> <spring:message code="HNI.ABOUT.DESCRIPTION.PART1.HEADER1" /></b></h4>
 					<ul class="list-nostyle">
-						<li><h5>Create, display and manage your tasks</h5></li>
+						<li><h5><spring:message code="HNI.ABOUT.DESCRIPTION.PART1.TEXT1" /></h5></li>
 					</ul>
-					<h4 class="media-heading text-primary"><b><span class="glyphicon glyphicon-time"></span> Priorities?</b></h4>
+					<h4 class="media-heading text-primary"><b><span class="glyphicon glyphicon-time"></span> <spring:message code="HNI.ABOUT.DESCRIPTION.PART1.HEADER2" /></b></h4>
 					<ul class="list-nostyle">
-						<li><h5>Manage priorities with state</h5></li>
+						<li><h5><spring:message code="HNI.ABOUT.DESCRIPTION.PART1.TEXT2" /></h5></li>
 					</ul>
-					<h4 class="media-heading text-primary"><b><span class="glyphicon glyphicon-calendar"></span> Deadline?</b></h4>
+					<h4 class="media-heading text-primary"><b><span class="glyphicon glyphicon-calendar"></span> <spring:message code="HNI.ABOUT.DESCRIPTION.PART1.HEADER3" /></b></h4>
 					<ul class="list-nostyle">
-						<li><h5>Set deadline for each task if required</h5></li>
+						<li><h5><spring:message code="HNI.ABOUT.DESCRIPTION.PART1.TEXT3" /></h5></li>
 					</ul>
-					<h4 class="media-heading text-primary"><b><span class="glyphicon glyphicon-pencil"></span> CRUD as you want!</b></h4>
+					<h4 class="media-heading text-primary"><b><span class="glyphicon glyphicon-pencil"></span> <spring:message code="HNI.ABOUT.DESCRIPTION.PART1.HEADER4" /></b></h4>
 					<ul class="list-nostyle">
-						<li><h5>Create, Display, Edit state, update or remove! You are the boss!</h5></li>
+						<li><h5><spring:message code="HNI.ABOUT.DESCRIPTION.PART1.TEXT4" /></h5></li>
 					</ul>
 				</p>
 				<div class="page-header">
-					<h3 class="media-heading text-info">Whith what?</h3>
+					<h3 class="media-heading text-info"><spring:message code="HNI.ABOUT.DESCRIPTION.HEADER2" /></h3>
 				</div>
 				<p>
-					<h4 class="media-heading text-primary"><b>Front-end</b></h4>
+					<h4 class="media-heading text-primary"><b><spring:message code="HNI.ABOUT.DESCRIPTION.PART2.HEADER1" /></b></h4>
 					<ul class="list-nostyle">
 						<li>
 							<span class="label label-default">#HTML5</span>
@@ -80,7 +80,7 @@
 							<span class="label label-default">#SpringMessages</span>
 						</li>
 					</ul>
-					<h4 class="media-heading text-primary"><b>Back-end</b></h4>
+					<h4 class="media-heading text-primary"><b><spring:message code="HNI.ABOUT.DESCRIPTION.PART2.HEADER2" /></b></h4>
 					<ul class="list-nostyle">
 						<li>
 							<span class="label label-default">#J2EE</span>
@@ -92,7 +92,7 @@
 							<span class="label label-default">#Jasypt</span>
 						</li>
 					</ul>
-					<h4 class="media-heading text-primary"><b>Database</b></h4>
+					<h4 class="media-heading text-primary"><b><spring:message code="HNI.ABOUT.DESCRIPTION.PART2.HEADER3" /></b></h4>
 					<ul class="list-nostyle">
 						<li>
 							<span class="label label-default">#MySQL</span>
@@ -101,24 +101,24 @@
 							<span class="label label-default">#JDBC</span>
 						</li>
 					</ul>
-					<h4 class="media-heading text-primary"><b>Server</b></h4>
+					<h4 class="media-heading text-primary"><b><spring:message code="HNI.ABOUT.DESCRIPTION.PART2.HEADER4" /></b></h4>
 					<ul class="list-nostyle">
 						<li>
-							<span class="label label-default">#Apache Tomcat</span>
+							<span class="label label-default">#ApacheTomcat</span>
 						</li>
 					</ul>
 				</p>
 				<div class="page-header">
-					<h3 class="media-heading text-info">Can i take a look?</h3>
+					<h3 class="media-heading text-info"><spring:message code="HNI.ABOUT.DESCRIPTION.HEADER3" /></h3>
 				</div>
 				<p>
-					<h4 class="text-primary">You can find all sources on <b><a class="text-success" href="https://github.com/wallouf/doit">Github</a></b></h4>
+					<h4 class="text-primary"><spring:message code="HNI.ABOUT.DESCRIPTION.PART3.TEXT1" /> <b><a class="text-success" href="https://github.com/wallouf/doit">Github</a></b></h4>
 				</p>
 				<div class="page-header">
-					<h3 class="media-heading text-info">Why?</h3>
+					<h3 class="media-heading text-info"><spring:message code="HNI.ABOUT.DESCRIPTION.HEADER4" /></h3>
 				</div>
 				<p>
-					<h4 class="text-primary">Done by Wallou to learn more and improve skills in J2EE.</h4>
+					<h4 class="text-primary"><spring:message code="HNI.ABOUT.DESCRIPTION.PART4.TEXT1" /></h4>
 				</p>
 	     	</div>
 	     </div>

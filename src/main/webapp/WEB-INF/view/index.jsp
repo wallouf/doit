@@ -21,7 +21,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Do It: Tasks list</title>
+    <title>Do It: <spring:message code="HMI.TASKLIST.TEXT.HEADER" /></title>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -40,10 +40,10 @@
 		<div class="row">
 		    <div class="col-xs-12 col-sm-12	">
 				<div class="full-bloc-light">
-				  <h2><b class="text-primary">Do It!</b> A simple application to manage all your tasks!</h2>
+				  <h2><b class="text-primary">Do It!</b> <spring:message code="HNI.ABOUT.DESCRIPTION.SLOGAN" /></h2>
 				</div>
 				<p>
-					<a href="<c:url value="/createTask" />" type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Add a new task</a>
+					<a href="<c:url value="/createTask" />" type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> <spring:message code="HMI.TASKLIST.BUTTON.NEWTASK" /></a>
 				</p>
 				<c:choose>
 					<c:when test="${!empty aTaskList }">
@@ -51,12 +51,12 @@
 						  <thead>
 						  	<tr>
 						  		<th>#</th>
-						  		<th>Task</th>
-						  		<th class="hidden-xs">Description</th>
-						  		<th>Deadline</th>
-						  		<th>State</th>
-						  		<th class="hidden-xs">Last update</th>
-						  		<th>Actions</th>
+						  		<th><spring:message code="HMI.TASK.FORM.PLACEHOLDER.NAME" /></th>
+						  		<th class="hidden-xs"><spring:message code="HMI.TASK.FORM.PLACEHOLDER.DESCRIPTION" /></th>
+						  		<th><spring:message code="HMI.TASK.FORM.PLACEHOLDER.STATE" /></th>
+						  		<th><spring:message code="HMI.TASK.FORM.PLACEHOLDER.DEADLINE" /></th>
+						  		<th class="hidden-xs"><spring:message code="HMI.TASK.FORM.PLACEHOLDER.LASTUPDATE" /></th>
+						  		<th><spring:message code="HMI.TASK.FORM.PLACEHOLDER.ACTIONS" /></th>
 						  	</tr>
 						  </thead>
 						  <tbody>
@@ -97,7 +97,7 @@
 					<c:otherwise>
 						<p>
 							<br />
-							<h5 class="text-warning">No tasks found! You can define your first task with the "Add a new task" green button! </h5>
+							<h5 class="text-warning"><spring:message code="HMI.TASKLIST.TASK.NONE" /></h5>
 						</p>
 					</c:otherwise>
 				</c:choose>
@@ -119,28 +119,28 @@
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-	        <h4 class="modal-title text-primary" id="doit_TaskStateModalLabel"><b>Update Task State:</b></h4>
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"><spring:message code="HMI.GENERIC.BUTTON.CLOSE" /></span></button>
+	        <h4 class="modal-title text-primary" id="doit_TaskStateModalLabel"><b><spring:message code="HMI.TASK.MODALFORM.HEADER" /></b></h4>
 	      </div>
 	      <div class="modal-body">
 			<form role="form">
 			  <div class="form-group">
 		      	<input class="hide" id="doit_TaskStateModal_form_id" data-task-id="-1">
 			 	<div class="form-group">
-				   	<label class="control-label" for="doit_TaskStateModal_form_state" style="font-size: medium;"><b>State: </b></label>
+				   	<label class="control-label" for="doit_TaskStateModal_form_state" style="font-size: medium;"><b><spring:message code="HMI.TASK.FORM.PLACEHOLDER.STATE" />: </b></label>
 					<select class="form-control vert-align" id="doit_TaskStateModal_form_state">
-					  <option value="Done" class="text-success">Done</option>
-					  <option value="To do" class="text-warning">To do</option>
-					  <option value="Urgent" class="text-danger">Urgent</option>
-					  <option value="None" class="">None</option>
+					  <option value="Done" class="text-success"><spring:message code="Task.data.state.success" /></option>
+					  <option value="To do" class="text-warning"><spring:message code="Task.data.state.warning" /></option>
+					  <option value="Urgent" class="text-danger"><spring:message code="Task.data.state.danger" /></option>
+					  <option value="None" class=""><spring:message code="Task.data.state.none" /></option>
 					</select>
 				 </div>
 			 	</div>
 			 </form>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-	        <button type="button" class="btn btn-success" onClick="doit_launchTaskStateEditorForList();">Save changes</button>
+	        <button type="button" class="btn btn-danger" data-dismiss="modal"><spring:message code="HMI.GENERIC.BUTTON.CANCEL" /></button>
+	        <button type="button" class="btn btn-success" onClick="doit_launchTaskStateEditorForList();"><spring:message code="HMI.GENERIC.BUTTON.SAVECHANGES" /></button>
 	      </div>
 	    </div>
 	  </div>
