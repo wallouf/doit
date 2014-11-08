@@ -25,8 +25,8 @@
 	   <ul class="nav navbar-nav navbar-right">
 	     <li><a href="<c:url value="/accountDetails" />"><span class="glyphicon glyphicon-user"></span> <c:out value="${sessionScope.userSession.name}" /></a></li>
 	     <li><a href='<c:url value="/disconnect" />'><span class="glyphicon glyphicon-off"></span> <spring:message code="HMI.NAVBAR.LINK.DISCONNECT" /></a></li>
-	     <li><a href='?lang=fr'>FR</a></li>
-	     <li><a href='?lang=en'>EN</a></li>
+	     <li><a href='<c:url value="/?lang=fr" />'>FR</a></li>
+	     <li><a href='<c:url value="/?lang=en" />'>EN</a></li>
 	   </ul>
 	 </c:if>
      <c:if test="${empty sessionScope.userSession}">

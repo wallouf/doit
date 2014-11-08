@@ -21,7 +21,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Do It: Edit a task</title>
+    <title>Do It: <spring:message code="HMI.EDITTASK.TEXT.HEADER" /></title>
     
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -38,15 +38,15 @@
 		<div class="row">
 		
       <form class="form-signin" role="form"  modelAttribute="updateTask" method="post" action="updateTask">
-        <h2 class="form-signin-heading">Edit a task</h2>
+        <h2 class="form-signin-heading"><spring:message code="HMI.EDITTASK.TEXT.HEADER" /></h2>
        	<input name="id" type="text" class="form-control hide" value='<c:out value="${sessionScope.oTaskToEdit.id }" />'>
-        <input tabindex="1" name="name" type="text" class="form-control" placeholder="Task name" required autofocus  value='<c:out value="${sessionScope.oTaskToEdit.name }" />'>
-        <textarea tabindex="2" rows="5" name="description" class="form-control" placeholder="Task description"><c:out value="${sessionScope.oTaskToEdit.description }" /></textarea>
+        <input tabindex="1" name="name" type="text" class="form-control" placeholder="<spring:message code="HMI.TASK.FORM.PLACEHOLDER.NAME" />" required autofocus  value='<c:out value="${sessionScope.oTaskToEdit.name }" />'>
+        <textarea tabindex="2" rows="5" name="description" class="form-control" placeholder="<spring:message code="HMI.TASK.FORM.PLACEHOLDER.DESCRIPTION" />"><c:out value="${sessionScope.oTaskToEdit.description }" /></textarea>
         <div class="input-group">
        		<span class="input-group-btn">
 		    <button id="doit-taskForm-datetimepicker-button" class="btn btn-primary form-control" type="button"><span class="glyphicon glyphicon-calendar"></span></button>
 			</span>
-			<input id="doit-taskForm-datetimepicker" type="text" class="form-control" name="deadline" placeholder="Deadline date" readonly  value='<c:catch var="taskException">${sessionScope.oTaskToEdit.deadlineToString }</c:catch><c:if test="${not empty taskException}">${sessionScope.oTaskToEdit.deadline }</c:if>'>
+			<input id="doit-taskForm-datetimepicker" type="text" class="form-control" name="deadline" placeholder="<spring:message code="HMI.TASK.FORM.PLACEHOLDER.DEADLINE" />" readonly  value='<c:catch var="taskException">${sessionScope.oTaskToEdit.deadlineToString }</c:catch><c:if test="${not empty taskException}">${sessionScope.oTaskToEdit.deadline }</c:if>'>
 			
 		  <span class="input-group-btn">
 		    <button onClick="$('#doit-taskForm-datetimepicker').val('');" class="btn btn-danger form-control" type="button"><span class="glyphicon glyphicon-remove"></span></button>
@@ -54,12 +54,12 @@
 		</div>
 		<br>
 		<div class="form-group">
-		   	<label class="control-label" for="doit_TaskStateModal_form_state" style="font-size: medium;"><b>State: </b></label>
+		   	<label class="control-label" for="doit_TaskStateModal_form_state" style="font-size: medium;"><b><spring:message code="HMI.TASK.FORM.PLACEHOLDER.STATE" />: </b></label>
 			<select class="form-control" name="state">
-			  <option value="Done" class="text-success" <c:if test="${sessionScope.oTaskToEdit.state == 'Done'}">selected</c:if>>Done</option>
-			  <option value="To do" class="text-warning" <c:if test="${sessionScope.oTaskToEdit.state == 'To do'}">selected</c:if>>To do</option>
-			  <option value="Urgent" class="text-danger" <c:if test="${sessionScope.oTaskToEdit.state == 'Urgent'}">selected</c:if>>Urgent</option>
-			  <option value="None" class="" <c:if test="${sessionScope.oTaskToEdit.state == 'None'}">selected</c:if>>None</option>
+			  <option value="Done" class="text-success" <c:if test="${sessionScope.oTaskToEdit.state == 'Done'}">selected</c:if>><spring:message code="Task.data.state.success" /></option>
+			  <option value="To do" class="text-warning" <c:if test="${sessionScope.oTaskToEdit.state == 'To do'}">selected</c:if>><spring:message code="Task.data.state.warning" /></option>
+			  <option value="Urgent" class="text-danger" <c:if test="${sessionScope.oTaskToEdit.state == 'Urgent'}">selected</c:if>><spring:message code="Task.data.state.danger" /></option>
+			  <option value="None" class="" <c:if test="${sessionScope.oTaskToEdit.state == 'None'}">selected</c:if>><spring:message code="Task.data.state.none" /></option>
 			</select>
 		</div>
         <!-- <div class="checkbox">
@@ -72,7 +72,7 @@
         	<c:forEach items="${formErrors }" var="error">
         		<c:if test="${ !empty error }">
 		      		<div class="alert alert-danger alert-dismissible" role="alert">
-			      		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			      		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only"><spring:message code="HMI.GENERIC.BUTTON.CLOSE" /></span></button>
 			      		<spring:message code="${error }" />
 		      		</div>
         		</c:if>
@@ -82,14 +82,14 @@
         	<c:forEach items="${serviceErrors }" var="error">
         		<c:if test="${ !empty error }">
 		      		<div class="alert alert-warning alert-dismissible" role="alert">
-			      		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			      		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only"><spring:message code="HMI.GENERIC.BUTTON.CLOSE" /></span></button>
 			      		<spring:message code="${error }" />
 		      		</div>
         		</c:if>
         	</c:forEach>
         </c:if>
-        <button class="btn btn-lg btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
-        <a href="<c:url value="/" /><c:out value="${sessionScope.sFromUrl }" />" class="btn btn-lg btn-danger btn-block"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
+        <button class="btn btn-lg btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-pencil"></span> <spring:message code="HMI.GENERIC.BUTTON.EDIT" /></button>
+        <a href="<c:url value="/" /><c:out value="${sessionScope.sFromUrl }" />" class="btn btn-lg btn-danger btn-block"><span class="glyphicon glyphicon-remove"></span> <spring:message code="HMI.GENERIC.BUTTON.CANCEL" /></a>
       </form>
 
     	</div>
