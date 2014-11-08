@@ -19,7 +19,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Do It: Register a new account</title>
+    <title>Do It: <spring:message code="HMI.REGISTER.TEXT.HEADER" /></title>
     
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -45,11 +45,11 @@
         </c:if>
 
       <form class="form-signin" role="form"  modelAttribute="creation" method="post" action="register">
-        <h2 class="form-signin-heading">Register a new account</h2>
-        <input name="name" type="text" class="form-control" placeholder="Account name" required autofocus>
-        <input name="email" type="email" class="form-control" placeholder="Email address" required>
-        <input name="password" type="password" class="form-control" placeholder="Password" required>
-        <input name="passwordBis" type="password" class="form-control" placeholder="Confirm password" required>
+        <h2 class="form-signin-heading"><spring:message code="HMI.REGISTER.TEXT.HEADER" /></h2>
+        <input name="name" type="text" class="form-control" placeholder="<spring:message code="HMI.USER.FORM.PLACEHOLDER.NAME" />" required autofocus>
+        <input name="email" type="email" class="form-control" placeholder="<spring:message code="HMI.USER.FORM.PLACEHOLDER.EMAIL" />" required>
+        <input name="password" type="password" class="form-control" placeholder="<spring:message code="HMI.USER.FORM.PLACEHOLDER.PASSWORD" />" required>
+        <input name="passwordBis" type="password" class="form-control" placeholder="<spring:message code="HMI.USER.FORM.PLACEHOLDER.PASSWORDBIS" />" required>
         <br>
         <c:if test="${ !empty formErrors }">
         	<c:forEach items="${formErrors }" var="error">
@@ -71,8 +71,8 @@
         		</c:if>
         	</c:forEach>
         </c:if>
-        <button class="btn btn-lg btn-success btn-block" type="submit"><span class="glyphicon glyphicon-plus"></span> Register</button>
-        <a href="<c:url value="/" />" class="btn btn-lg btn-danger btn-block"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
+        <button class="btn btn-lg btn-success btn-block" type="submit"><span class="glyphicon glyphicon-plus"></span> <spring:message code="HMI.REGISTER.BUTTON.REGISTER" /></button>
+        <a href="<c:url value="/" />" class="btn btn-lg btn-danger btn-block"><span class="glyphicon glyphicon-remove"></span> <spring:message code="HMI.GENERIC.BUTTON.CANCEL" /></a>
       </form>
 
     	</div>

@@ -21,7 +21,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Do It: Account details</title>
+    <title>Do It: <spring:message code="HMI.USERDETAILS.TEXT.HEADER" /></title>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -37,36 +37,36 @@
 		<div class="row">
 		    <div class="col-xs-12 col-sm-12	">
 				<div class="full-bloc-light">
-				  <h3>Account details <c:out value="#${oAccount.id }" /> :</h3>
+				  <h3><spring:message code="HMI.USERDETAILS.TEXT.HEADER" /> <c:out value="#${oAccount.id }" /> :</h3>
 				</div>
 				<c:choose>
 					<c:when test="${!empty oAccount }">
 						<p>
-							<a href='<c:url value="/updateAccount" />'   type="button" class="btn btn-warning btn-responsive"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-							<a href="<c:url value="/deleteAccount" />" onClick="return confirm('Do you really want to remove your account?');"  type="button" class="btn btn-danger btn-responsive"><span class="glyphicon glyphicon-remove"></span> Remove</a>
+							<a href='<c:url value="/updateAccount" />'   type="button" class="btn btn-warning btn-responsive"><span class="glyphicon glyphicon-pencil"></span> <spring:message code="HMI.GENERIC.BUTTON.EDIT" /></a>
+							<a href="<c:url value="/deleteAccount" />" onClick="return confirm('Do you really want to remove your account?');"  type="button" class="btn btn-danger btn-responsive"><span class="glyphicon glyphicon-remove"></span> <spring:message code="HMI.GENERIC.BUTTON.REMOVE" /></a>
 						</p>
 						<table class="table table-striped" style="font-size: medium;">
 						  <thead>
 						  	<tr>
-						  		<th>Field</th>
-						  		<th>Value</th>
+						  		<th><spring:message code="HMI.GENERIC.TABLE.FIELD" /></th>
+						  		<th><spring:message code="HMI.GENERIC.TABLE.VALUE" /></th>
 						  	</tr>
 						  </thead>
 						  <tbody>
 						  		<tr>
-							  		<td class="vert-align">Id</td>
+							  		<td class="vert-align"><spring:message code="HMI.USER.FORM.PLACEHOLDER.ID" /></td>
 							  		<td class="vert-align"><c:out value="${oAccount.id }" /></td>
 						  		</tr>
 						  		<tr>
-							  		<td class="vert-align">Name</td>
+							  		<td class="vert-align"><spring:message code="HMI.USER.FORM.PLACEHOLDER.NAME" /></td>
 							  		<td class="vert-align"><c:out value="${oAccount.name }" /></td>
 						  		</tr>
 						  		<tr>
-							  		<td class="vert-align">Password</td>
+							  		<td class="vert-align"><spring:message code="HMI.USER.FORM.PLACEHOLDER.PASSWORD" /></td>
 							  		<td class="vert-align">**********</td>
 						  		</tr>
 						  		<tr>
-							  		<td class="vert-align">Email</td>
+							  		<td class="vert-align"><spring:message code="HMI.USER.FORM.PLACEHOLDER.EMAIL" /></td>
 							  		<td class="vert-align"><c:out value="${oAccount.email }" /></td>
 						  		</tr>
 						  </tbody>
@@ -75,7 +75,7 @@
 					<c:otherwise>
 						<p>
 							<br />
-							<h5 class="text-warning">No account found!</h5>
+							<h5 class="text-warning"><spring:message code="HMI.GENERIC.USER.NOTFOUND" /></h5>
 						</p>
 					</c:otherwise>
 				</c:choose>

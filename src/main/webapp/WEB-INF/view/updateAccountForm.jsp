@@ -19,7 +19,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Do It: Update your account</title>
+    <title>Do It: <spring:message code="HMI.UPDATEUSER.TEXT.HEADER" /></title>
     
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -36,14 +36,14 @@
 		<div class="row">
 
       <form class="form-signin" role="form"  modelAttribute="edition" method="post" action="updateAccount">
-        <h2 class="form-signin-heading">Update your account</h2>
+        <h2 class="form-signin-heading"><spring:message code="HMI.UPDATEUSER.TEXT.HEADER" /></h2>
 		<c:choose>
 			<c:when test="${!empty oAccount }">
-		        <input name="name" type="text" value='<c:out value="${oAccount.name }" />' class="form-control" placeholder="Account name" required autofocus>
-		        <input name="email" type="email" value='<c:out value="${oAccount.email }" />' class="form-control" placeholder="Email address" required>
-		        <input name="passwordOld" type="password" class="form-control" placeholder="Old Password">
-		        <input name="password" type="password" class="form-control" placeholder="New Password">
-		        <input name="passwordBis" type="password" class="form-control" placeholder="Confirm new password">
+		        <input name="name" type="text" value='<c:out value="${oAccount.name }" />' class="form-control" placeholder="<spring:message code="HMI.USER.FORM.PLACEHOLDER.NAME" />" required autofocus>
+		        <input name="email" type="email" value='<c:out value="${oAccount.email }" />' class="form-control" placeholder="<spring:message code="HMI.USER.FORM.PLACEHOLDER.EMAIL" />" required>
+		        <input name="passwordOld" type="password" class="form-control" placeholder="<spring:message code="HMI.USER.FORM.PLACEHOLDER.PASSWORDOLD" />">
+		        <input name="password" type="password" class="form-control" placeholder="<spring:message code="HMI.USER.FORM.PLACEHOLDER.PASSWORDNEW" />">
+		        <input name="passwordBis" type="password" class="form-control" placeholder="<spring:message code="HMI.USER.FORM.PLACEHOLDER.PASSWORDBIS" />">
 		        <br>
 		        <c:if test="${ !empty formErrors }">
 		        	<c:forEach items="${formErrors }" var="error">
@@ -65,14 +65,14 @@
 		        		</c:if>
 		        	</c:forEach>
 		        </c:if>
-		        <button class="btn btn-lg btn-warning btn-block" type="submit"><span class="glyphicon glyphicon-pencil"></span> Update</button>
-		        <a href="<c:url value="/accountDetails" />" class="btn btn-lg btn-danger btn-block"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
+		        <button class="btn btn-lg btn-warning btn-block" type="submit"><span class="glyphicon glyphicon-pencil"></span> <spring:message code="HMI.GENERIC.BUTTON.UPDATE" /></button>
+		        <a href="<c:url value="/accountDetails" />" class="btn btn-lg btn-danger btn-block"><span class="glyphicon glyphicon-remove"></span> <spring:message code="HMI.GENERIC.BUTTON.CANCEL" /></a>
 		      
 			</c:when>
 			<c:otherwise>
 				<p>
 					<br />
-					<h5 class="text-warning">No account found!</h5>
+					<h5 class="text-warning"><spring:message code="HMI.GENERIC.USER.NOTFOUND" /></h5>
 				</p>
 			</c:otherwise>
 		</c:choose>

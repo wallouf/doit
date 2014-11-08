@@ -19,7 +19,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Do It: Signin</title>
+    <title>Do It: <spring:message code="HMI.SIGNIN.TEXT.HEADER" /></title>
     
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -37,8 +37,8 @@
 
       <form class="form-signin" role="form" method="post" modelAttribute="connection">
         <h2 class="form-signin-heading"><spring:message code="HMI.SIGNIN.TEXT.HEADER" /></h2>
-        <input name="email" type="email" class="form-control" placeholder="<spring:message code="HMI.SIGNIN.FORM.PLACEHOLDER.EMAIL" />" required autofocus>
-        <input name="password" type="password" class="form-control" placeholder="<spring:message code="HMI.SIGNIN.FORM.PLACEHOLDER.PASSWORD" />" required>
+        <input name="email" type="email" class="form-control" placeholder="<spring:message code="HMI.USER.FORM.PLACEHOLDER.EMAIL" />" required autofocus>
+        <input name="password" type="password" class="form-control" placeholder="<spring:message code="HMI.USER.FORM.PLACEHOLDER.PASSWORD" />" required>
 	    <!-- <div class="checkbox">
 	        <label class="checkbox">
 	          <input type="checkbox" value="remember-me"> Remember me
