@@ -3,7 +3,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
 <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/css/jquery-ui.min.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/css/jquery-ui.theme.min.css" />" rel="stylesheet">
@@ -11,10 +10,8 @@
 <script src="<c:url value="/resources/js/jquery.js" />"></script>
 <script src="<c:url value="/resources/js/jquery-ui.min.js" />"></script>
 <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
-<fmt:setLocale value="${language}" />
-<fmt:setBundle basename="com.example.i18n.text" />
 <!DOCTYPE html>
-<html lang="${language}">
+<html>
   <head>
     <meta charset="utf-8">
     <meta name="description" content="">
@@ -39,9 +36,9 @@
 		<div class="row">
 
       <form class="form-signin" role="form" method="post" modelAttribute="connection">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <input name="email" type="email" class="form-control" placeholder="Email address" required autofocus>
-        <input name="password" type="password" class="form-control" placeholder="Password" required>
+        <h2 class="form-signin-heading"><spring:message code="HMI.SIGNIN.TEXT.HEADER" /></h2>
+        <input name="email" type="email" class="form-control" placeholder="<spring:message code="HMI.SIGNIN.FORM.PLACEHOLDER.EMAIL" />" required autofocus>
+        <input name="password" type="password" class="form-control" placeholder="<spring:message code="HMI.SIGNIN.FORM.PLACEHOLDER.PASSWORD" />" required>
 	    <!-- <div class="checkbox">
 	        <label class="checkbox">
 	          <input type="checkbox" value="remember-me"> Remember me
@@ -68,8 +65,8 @@
         		</c:if>
         	</c:forEach>
         </c:if>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        <a href="register" class="btn btn-lg btn-primary btn-block">Register</a>
+        <button class="btn btn-lg btn-primary btn-block" type="submit"><spring:message code="HMI.SIGNIN.BUTTON.SIGNIN" /></button>
+        <a href="register" class="btn btn-lg btn-primary btn-block"><spring:message code="HMI.SIGNIN.BUTTON.REGISTER" /></a>
       </form>
 
     	</div>
