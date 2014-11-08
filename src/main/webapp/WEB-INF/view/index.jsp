@@ -43,7 +43,7 @@
 		<div class="row">
 		    <div class="col-xs-12 col-sm-12	">
 				<div class="full-bloc-light">
-				  <h3>Manage your tasks every days easily with <b>Do It!</b></h3>
+				  <h2><b class="text-primary">Do It!</b> A simple application to manage all your tasks!</h2>
 				</div>
 				<p>
 					<a href="<c:url value="/createTask" />" type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Add a new task</a>
