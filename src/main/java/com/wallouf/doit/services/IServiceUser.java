@@ -20,7 +20,7 @@ public interface IServiceUser {
 
     User getActualUser( HttpServletRequest request );
 
-    void supprimerUser( final Integer pIdUser );
+    void removeUser( final User pUser );
 
     public List<String> getServiceErrors();
 

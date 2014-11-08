@@ -14,7 +14,7 @@ import com.wallouf.doit.entities.User;
 import com.wallouf.doit.services.IServiceUser;
 
 @Controller
-public class DisplayAccountDetailsController {
+public class DisplayUserDetailsController {
     public static final String VIEW               = "accountDetails";
     public static final String ATT_AccountDetails = "oAccount";
     public static final String ATT_USER_SESSION   = "userSession";
@@ -23,7 +23,7 @@ public class DisplayAccountDetailsController {
     private IServiceUser       service;
 
     @RequestMapping( value = "/accountDetails", method = RequestMethod.GET )
-    public String afficherBonjour( final ModelMap pModel, HttpServletRequest request,
+    public String displayUserDetails( final ModelMap pModel, HttpServletRequest request,
             HttpServletResponse response ) {
         HttpSession session = request.getSession();
         if ( session.getAttribute( ATT_USER_SESSION ) != null ) {

@@ -93,14 +93,18 @@ public class ServiceUser implements IServiceUser {
     }
 
     @Transactional
-    public void supprimerUser( Integer pIdUser ) {
-        final User lUser = new User();
-        lUser.setId( pIdUser );
-        dao.supprimerUser( lUser );
+    public void removeUser( User pUser ) {
+        resetErrorsMaps();
+        if ( pUser == null ) {
+
+        } else {
+            dao.supprimerUser( pUser );
+        }
     }
 
     @Transactional( readOnly = true )
     public User rechercherUser( String email ) {
+        resetErrorsMaps();
         return dao.rechercherUser( email );
     }
 
