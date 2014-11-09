@@ -18,8 +18,8 @@
 	 <div id="navbar" class="collapse navbar-collapse">
      <c:if test="${!empty sessionScope.userSession}">
 	   <ul class="nav navbar-nav">
-	     <li class="active"><a href='<c:url value="/" />'><spring:message code="HMI.NAVBAR.LINK.TASKS" /></a></li>
-	     <li><a href="<c:url value="/about" />"><spring:message code="HMI.NAVBAR.LINK.ABOUT" /></a></li>
+	     <li class='<c:if test="${requestScope['javax.servlet.forward.servlet_path'] == '/'}">active</c:if>'><a href='<c:url value="/" />'><spring:message code="HMI.NAVBAR.LINK.TASKS" /></a></li>
+	     <li class='<c:if test="${requestScope['javax.servlet.forward.servlet_path'] == '/about'}">active</c:if>'><a href="<c:url value="/about" />"><spring:message code="HMI.NAVBAR.LINK.ABOUT" /></a></li>
 	     <li><a href="https://github.com/wallouf/doit"><spring:message code="HMI.NAVBAR.LINK.GITHUB" /></a></li>
 	   </ul>
 	   <ul class="nav navbar-nav navbar-right">
