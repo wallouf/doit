@@ -8,7 +8,7 @@
     	<div class="col-xs-12 col-sm-12	">
 			<hr>
 			<footer>
-			  <p>&copy; <a href="www.wallouf.com">Wallouf</a> 2014</p>
+			  <p>&copy; <a href="http://www.wallouf.com">Wallouf</a> 2014</p>
 			</footer>
 		</div>
     </div>
