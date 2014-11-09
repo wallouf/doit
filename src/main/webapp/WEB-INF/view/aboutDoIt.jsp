@@ -123,15 +123,6 @@
 	     	</div>
 	     </div>
 	</div>
-	<div class="container-fluid">
-	   	<div class="row">
-	    	<div class="col-xs-12 col-sm-12	">
-				<hr>
-				<footer>
-				  <p>&copy; Wallouf 2014</p>
-				</footer>
-			</div>
-	    </div>
-	</div>
+    <c:import url="/WEB-INF/view/footer.jsp" />
   </body>
 </html>

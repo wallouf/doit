@@ -106,16 +106,7 @@
 	     	</div>
 	     </div>
 	</div>
-	<div class="container-fluid">
-	   	<div class="row">
-	    	<div class="col-xs-12 col-sm-12	">
-				<hr>
-				<footer>
-				  <p>&copy; Wallouf 2014</p>
-				</footer>
-			</div>
-	    </div>
-	</div>
+    <c:import url="/WEB-INF/view/footer.jsp" />
 	
 	<div class="modal fade" id="doit_TaskStateModal" tabindex="-1" role="dialog" aria-labelledby="doit_TaskStateModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
