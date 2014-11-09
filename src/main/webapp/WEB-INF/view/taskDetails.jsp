@@ -70,7 +70,7 @@
 						  		</tr>
 						  		<tr>
 							  		<td class="vert-align"><spring:message code="HMI.TASK.FORM.PLACEHOLDER.DEADLINE" /></td>
-							  		<td class="vert-align"><joda:format value="${TaskObject.deadline }" pattern="dd MMM yyyy HH:mm"/></td>
+							  		<td class="vert-align"><joda:format value="${oTask.deadline }" pattern="dd MMM yyyy HH:mm"/></td>
 						  		</tr>
 						  		<tr id="taskDetailsStateRow" data-task-id="<c:out value="${oTask.id }" />">
 							  		<td class="vert-align"><spring:message code="HMI.TASK.FORM.PLACEHOLDER.STATE" /></td>

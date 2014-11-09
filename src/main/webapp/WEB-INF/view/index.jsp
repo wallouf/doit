@@ -53,8 +53,8 @@
 						  		<th>#</th>
 						  		<th><spring:message code="HMI.TASK.FORM.PLACEHOLDER.NAME" /></th>
 						  		<th class="hidden-xs"><spring:message code="HMI.TASK.FORM.PLACEHOLDER.DESCRIPTION" /></th>
-						  		<th><spring:message code="HMI.TASK.FORM.PLACEHOLDER.STATE" /></th>
 						  		<th><spring:message code="HMI.TASK.FORM.PLACEHOLDER.DEADLINE" /></th>
+						  		<th><spring:message code="HMI.TASK.FORM.PLACEHOLDER.STATE" /></th>
 						  		<th class="hidden-xs"><spring:message code="HMI.TASK.FORM.PLACEHOLDER.LASTUPDATE" /></th>
 						  		<th><spring:message code="HMI.TASK.FORM.PLACEHOLDER.ACTIONS" /></th>
 						  	</tr>
