@@ -60,7 +60,7 @@
 						  		<th><spring:message code="HMI.TASK.FORM.PLACEHOLDER.ACTIONS" /></th>
 						  	</tr>
 						  </thead>
-						  <tbody>
+						  <tbody id="taskNotDoneList-tbody">
 						  	<c:forEach items="${aTaskList }" var="TaskObject">
 						  		<c:if test="${!empty TaskObject }">
 							  		<tr id="taskListRow" data-task-id="<c:out value="${TaskObject.id }" />">
@@ -107,10 +107,10 @@
 							  		<th><spring:message code="HMI.TASK.FORM.PLACEHOLDER.ACTIONS" /></th>
 							  	</tr>
 							  </thead>
-							  <tbody>
+						  <tbody id="taskDoneList-tbody">
 							  	<c:forEach items="${aTaskDoneList }" var="TaskObject">
 							  		<c:if test="${!empty TaskObject }">
-								  		<tr id="taskListRow" data-task-id="<c:out value="${TaskObject.id }" />">
+								  		<tr id="taskListRow" data-task-id="<c:out value="${TaskObject.id }" />" class="table-tr-line-through">
 									  		<td class="vert-align"><a href='<c:url value="/taskDetails?taskId=${TaskObject.id }" />'><c:out value="${TaskObject.id }" /></a></td>
 									  		<td class="vert-align"><a href='<c:url value="/taskDetails?taskId=${TaskObject.id }" />'><c:out value="${TaskObject.name }" /></a></td>
 									  		<td class="vert-align hidden-xs"><c:out value="${TaskObject.description }" /></td>
@@ -130,7 +130,7 @@
 												</c:otherwise>
 											</c:choose>
 									  		<td class="vert-align hidden-xs"><joda:format value="${TaskObject.created }" pattern="dd MMM yyyy"/></td>
-									  		<td class="vert-align">
+									  		<td class="vert-align text-no-decoration">
 												  <button type="button" class="btn btn-no-bck btn-xs text-warning" onClick="doit_displayTaskStateEditorForList(<c:out value="${TaskObject.id }" />);"><span class="glyphicon glyphicon-info-sign"></span></button>
 												  <a href='<c:url value="/updateTask?taskId=${TaskObject.id }" />'  class="btn btn-no-bck btn-xs text-warning"><span class="glyphicon glyphicon-pencil"></span></a>
 												  <a href='<c:url value="/deleteTask?taskId=${TaskObject.id }" />' onClick="return confirm('Do you really want to remove this Task?');" class="btn btn-no-bck btn-xs text-danger"><span class="glyphicon glyphicon-remove"></span></a>

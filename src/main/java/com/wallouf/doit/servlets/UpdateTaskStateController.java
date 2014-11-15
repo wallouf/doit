@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.wallouf.doit.entities.Task;
 import com.wallouf.doit.services.IServiceTask;
 
 @Controller
@@ -18,6 +19,7 @@ public class UpdateTaskStateController {
     public static final String VIEW_LIST_SUCCESS       = "ajaxTaskListState";
     public static final String VIEW_DETAILS_SUCCESS    = "ajaxTaskDetailsState";
     public static final String ATT_TASK_STATE          = "sTaskState";
+    public static final String ATT_TASK                = "TaskObject";
     public static final String ATT_USER_SESSION        = "userSession";
     public static final String FORM_MESSAGE_ERROR_NAME = "sAlertMessageError";
     public static final String FORM_MESSAGE_ERROR      = "Task.search.NotFound";
@@ -31,10 +33,11 @@ public class UpdateTaskStateController {
             @RequestParam( value = "taskState" ) final String pTaskState ) {
         HttpSession session = request.getSession();
         service.editTaskState( pTaskId, session.getAttribute( ATT_USER_SESSION ), pTaskState );
+        Task oTaskUpdated = service.findTask( pTaskId, session.getAttribute( ATT_USER_SESSION ) );
         if ( !service.getServiceErrors().isEmpty() || !service.getFormErrors().isEmpty() ) {
             session.setAttribute( FORM_MESSAGE_ERROR_NAME, FORM_MESSAGE_ERROR );
         }
-        request.setAttribute( ATT_TASK_STATE, pTaskState );
+        request.setAttribute( ATT_TASK, oTaskUpdated );
         return VIEW_LIST_SUCCESS;
     }
 

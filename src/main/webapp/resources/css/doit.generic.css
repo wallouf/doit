@@ -6,6 +6,14 @@ body {
 {
 	background-color: inherit;
 }
+.table-tr-line-through td
+{
+	text-decoration: line-through;
+}
+.text-no-decoration
+{
+	text-decoration: none !important;
+}
 
 .list-nostyle
 {

@@ -5,7 +5,24 @@ function doit_updateTaskListState(taskId, taskState){
 		  data: { taskId: taskId, taskState: taskState },
 		    success: function(data, textStatus, jqXHR)
 		    {
-		        $("#taskListRow[data-task-id='" + taskId +"']").find("#taskListRow-State").html(data);
+	    		var parentId = $("#taskListRow[data-task-id='" + taskId +"']").parent().attr('id');
+		    	if(taskState == "Done"){
+		    		if(parentId == "taskNotDoneList-tbody"){
+				        $("#taskListRow[data-task-id='" + taskId +"']").remove();
+				        $('#taskDoneList-tbody').prepend("<tr id='taskListRow' data-task-id='"+taskId+"' class='table-tr-line-through'>"+data+"</tr>");
+				        
+		    		}else{
+				        $("#taskListRow[data-task-id='" + taskId +"']").html(data);
+		    		}
+		    	}else{
+		    		if(parentId == "taskDoneList-tbody"){
+				        $("#taskListRow[data-task-id='" + taskId +"']").remove();
+				        $('#taskNotDoneList-tbody').prepend("<tr id='taskListRow' data-task-id='"+taskId+"'>"+data+"</tr>");
+				        
+		    		}else{
+				        $("#taskListRow[data-task-id='" + taskId +"']").html(data);
+		    		}
+		    	}
 		        
 		    },
 		    error: function (jqXHR, textStatus, errorThrown)
