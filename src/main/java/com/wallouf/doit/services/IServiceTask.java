@@ -8,6 +8,10 @@ public interface IServiceTask {
 
     List<Task> findTasks( final Object pUser );
 
+    List<Task> findDoneTasks( final Object pUser );
+
+    List<Task> findNotDoneTasks( final Object pUser );
+
     Task findTask( final Integer pTaskId, final Object pUser );
 
     void createTask( final String name, final String description, final String state, final String deadline,

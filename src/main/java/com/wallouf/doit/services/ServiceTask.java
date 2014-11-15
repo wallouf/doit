@@ -63,6 +63,30 @@ public class ServiceTask implements IServiceTask {
     }
 
     @Transactional( readOnly = true )
+    public List<Task> findDoneTasks( final Object pUser ) {
+        // TODO Auto-generated method stub
+        resetErrorsMaps();
+        checkUser( pUser );
+        if ( getFormErrors().isEmpty() ) {
+            return dao.findDoneTasks( ( (User) pUser ).getId() );
+        } else {
+            return null;
+        }
+    }
+
+    @Transactional( readOnly = true )
+    public List<Task> findNotDoneTasks( final Object pUser ) {
+        // TODO Auto-generated method stub
+        resetErrorsMaps();
+        checkUser( pUser );
+        if ( getFormErrors().isEmpty() ) {
+            return dao.findNotDoneTasks( ( (User) pUser ).getId() );
+        } else {
+            return null;
+        }
+    }
+
+    @Transactional( readOnly = true )
     public Task findTask( final Integer pTaskId, final Object pUser ) {
         // TODO Auto-generated method stub
         resetErrorsMaps();

@@ -8,6 +8,10 @@ public interface ITaskDAO {
 
     List<Task> findTasks( final Integer pTaskUserId );
 
+    List<Task> findDoneTasks( final Integer pTaskUserId );
+
+    List<Task> findNotDoneTasks( final Integer pTaskUserId );
+
     Task findTask( final Integer pTaskId, final Integer pTaskUserId );
 
     void createTask( final Task pTask );

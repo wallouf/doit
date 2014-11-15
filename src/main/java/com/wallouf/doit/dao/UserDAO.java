@@ -53,7 +53,7 @@ public class UserDAO implements IUserDAO {
         } catch ( NoResultException e ) {
             return null;
         } catch ( Exception e ) {
-            throw new DAOException( e );
+            return null;
         }
     }
 

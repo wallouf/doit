@@ -23,6 +23,7 @@ import com.wallouf.doit.services.IServiceTask;
 public class DisplayTasksListController {
     public static final String ATT_USER_SESSION = "userSession";
     public static final String ATT_TaskList     = "aTaskList";
+    public static final String ATT_TaskDoneList = "aTaskDoneList";
 
     @Autowired
     private IServiceTask       service;
@@ -31,8 +32,12 @@ public class DisplayTasksListController {
     public String displayTaskList( final ModelMap pModel, HttpServletRequest request,
             HttpServletResponse response ) {
         HttpSession session = request.getSession();
-        List<Task> aTaskList = service.findTasks( session.getAttribute( ATT_USER_SESSION ) );
+        // List<Task> aTaskList = service.findTasks( session.getAttribute(
+        // ATT_USER_SESSION ) );
+        List<Task> aTaskList = service.findNotDoneTasks( session.getAttribute( ATT_USER_SESSION ) );
+        List<Task> aTaskDoneList = service.findDoneTasks( session.getAttribute( ATT_USER_SESSION ) );
         request.setAttribute( ATT_TaskList, aTaskList );
+        request.setAttribute( ATT_TaskDoneList, aTaskDoneList );
         return "index";
     }
 }
