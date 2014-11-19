@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags" %>
 <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
@@ -66,7 +67,14 @@
 							  		<tr id="taskListRow" data-task-id="<c:out value="${TaskObject.id }" />">
 								  		<td class="vert-align"><a href='<c:url value="/taskDetails?taskId=${TaskObject.id }" />'><c:out value="${TaskObject.id }" /></a></td>
 								  		<td class="vert-align"><a href='<c:url value="/taskDetails?taskId=${TaskObject.id }" />'><c:out value="${TaskObject.name }" /></a></td>
-								  		<td class="vert-align hidden-xs"><c:out value="${TaskObject.description }" /></td>
+								  		<td class="vert-align hidden-xs"><c:choose>
+									  				<c:when test="${fn:length(TaskObject.description)>25}">
+									  					<c:out value="${fn:substring(TaskObject.description,0,22) }..." />
+									  				</c:when>
+									  				<c:otherwise>
+									  					<c:out value="${TaskObject.description}" />
+									  				</c:otherwise>
+									  			</c:choose></td>
 								  		<td class="vert-align"><joda:format value="${TaskObject.deadline }" pattern="dd MMM yyyy HH:mm"/></td>
 										<c:choose>
 											<c:when test="${TaskObject.state == initParam.sTaskStateSuccess }">
@@ -94,7 +102,7 @@
 						  	</c:forEach>
 						  </tbody>
 						</table>
-						<h3 class="text-info"><spring:message code="HMI.TASKLIST.TEXT.TABLE.DONE" /></h3>
+							<h3 class="text-info"><spring:message code="HMI.TASKLIST.TEXT.TABLE.DONE" /></h3>
 							<table class="table table-striped"  style="font-size: medium;">
 							  <thead>
 							  	<tr>
@@ -113,7 +121,14 @@
 								  		<tr id="taskListRow" data-task-id="<c:out value="${TaskObject.id }" />" class="table-tr-line-through">
 									  		<td class="vert-align"><a href='<c:url value="/taskDetails?taskId=${TaskObject.id }" />'><c:out value="${TaskObject.id }" /></a></td>
 									  		<td class="vert-align"><a href='<c:url value="/taskDetails?taskId=${TaskObject.id }" />'><c:out value="${TaskObject.name }" /></a></td>
-									  		<td class="vert-align hidden-xs"><c:out value="${TaskObject.description }" /></td>
+									  		<td class="vert-align hidden-xs"><c:choose>
+									  				<c:when test="${fn:length(TaskObject.description)>25}">
+									  					<c:out value="${fn:substring(TaskObject.description,0,22) }..." />
+									  				</c:when>
+									  				<c:otherwise>
+									  					<c:out value="${TaskObject.description}" />
+									  				</c:otherwise>
+									  			</c:choose></td>
 									  		<td class="vert-align"><joda:format value="${TaskObject.deadline }" pattern="dd MMM yyyy HH:mm"/></td>
 											<c:choose>
 												<c:when test="${TaskObject.state == initParam.sTaskStateSuccess }">
