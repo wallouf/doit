@@ -50,74 +50,76 @@
 	     </div>
 	</div>
 	<c:choose>
-		<c:when test="${!empty aTaskList || !empty aTaskDoneList }">
+		<c:when test="${!empty aTaskList || !empty aTaskDoneList }">			
+		<div role="tabpanel">
 			<div class="container-fluid">
 				<div class="row">
 				    <div class="col-xs-12 col-sm-12	">
-						<h3 class="text-info"><spring:message code="HMI.TASKLIST.TEXT.TABLE.TODO" /></h3>
+					  <ul class="nav nav-tabs" role="tablist">
+					    <li role="presentation" class="active"><a href="#inprogress" aria-controls="inprogress" role="tab" data-toggle="tab"><span class="text-info"><spring:message code="HMI.TASKLIST.TEXT.TABLE.TODO" /></span></a></li>
+					    <li role="presentation"><a href="#done" aria-controls="done" role="tab" data-toggle="tab"><span class="text-info"><spring:message code="HMI.TASKLIST.TEXT.TABLE.DONE" /></span></a></li>
+					  </ul>
 			     	</div>
 			     </div>
 			</div>
-			<table class="table table-striped"  style="font-size: medium;">
-			  <thead>
-			  	<tr>
-			  		<th>#</th>
-			  		<th><spring:message code="HMI.TASK.FORM.PLACEHOLDER.NAME" /></th>
-			  		<th class="hidden-xs"><spring:message code="HMI.TASK.FORM.PLACEHOLDER.DESCRIPTION" /></th>
-			  		<th><spring:message code="HMI.TASK.FORM.PLACEHOLDER.DEADLINE" /></th>
-			  		<th><spring:message code="HMI.TASK.FORM.PLACEHOLDER.STATE" /></th>
-			  		<th class="hidden-xs"><spring:message code="HMI.TASK.FORM.PLACEHOLDER.LASTUPDATE" /></th>
-			  		<th><spring:message code="HMI.TASK.FORM.PLACEHOLDER.ACTIONS" /></th>
-			  	</tr>
-			  </thead>
-			  <tbody id="taskNotDoneList-tbody">
-			  	<c:forEach items="${aTaskList }" var="TaskObject">
-			  		<c:if test="${!empty TaskObject }">
-				  		<tr id="taskListRow" data-task-id="<c:out value="${TaskObject.id }" />">
-					  		<td class="vert-align"><a href='<c:url value="/taskDetails?taskId=${TaskObject.id }" />'><c:out value="${TaskObject.id }" /></a></td>
-					  		<td class="vert-align"><a href='<c:url value="/taskDetails?taskId=${TaskObject.id }" />'><c:out value="${TaskObject.name }" /></a></td>
-					  		<td class="vert-align hidden-xs"><c:choose>
-						  				<c:when test="${fn:length(TaskObject.description)>25}">
-						  					<c:out value="${fn:substring(TaskObject.description,0,22) }..." />
-						  				</c:when>
-						  				<c:otherwise>
-						  					<c:out value="${TaskObject.description}" />
-						  				</c:otherwise>
-						  			</c:choose></td>
-					  		<td class="vert-align"><joda:format value="${TaskObject.deadline }" pattern="dd MMM yyyy HH:mm"/></td>
-							<c:choose>
-								<c:when test="${TaskObject.state == initParam.sTaskStateSuccess }">
-					  				<td id="taskListRow-State" class="vert-align"><span data-task-state="Done" class="label label-success"><spring:message code="Task.data.state.success" /></span></td>
-								</c:when>
-								<c:when test="${TaskObject.state == initParam.sTaskStateWarning }">
-					  				<td id="taskListRow-State" class="vert-align"><span data-task-state="To do" class="label label-primary"><spring:message code="Task.data.state.warning" /></span></td>
-								</c:when>
-								<c:when test="${TaskObject.state == initParam.sTaskStateDanger }">
-					  				<td id="taskListRow-State" class="vert-align"><span data-task-state="Urgent" class="label label-danger"><spring:message code="Task.data.state.danger" /></span></td>
-								</c:when>
-								<c:otherwise>
-					  				<td id="taskListRow-State" class="vert-align"><span data-task-state="None" class="label label-info"><spring:message code="Task.data.state.none" /></span></td>
-								</c:otherwise>
-							</c:choose>
-					  		<td class="vert-align hidden-xs"><joda:format value="${TaskObject.created }" pattern="dd MMM yyyy"/></td>
-					  		<td class="vert-align">
-								  <button onClick="doit_updateTaskListState(<c:out value="${TaskObject.id }" />,'Done');" type="button" class="btn btn-no-bck btn-xs text-success"><span class="glyphicon glyphicon-ok"></span></button>
-								  <button type="button" class="btn btn-no-bck btn-xs text-warning" onClick="doit_displayTaskStateEditorForList(<c:out value="${TaskObject.id }" />);"><span class="glyphicon glyphicon-info-sign"></span></button>
-								  <a href='<c:url value="/updateTask?taskId=${TaskObject.id }" />'  class="btn btn-no-bck btn-xs text-warning"><span class="glyphicon glyphicon-pencil"></span></a>
-								  <a href='<c:url value="/deleteTask?taskId=${TaskObject.id }" />' onClick="return confirm('Do you really want to remove this Task?');" class="btn btn-no-bck btn-xs text-danger"><span class="glyphicon glyphicon-remove"></span></a>
-							</td>
-					  	</tr>
-			  		</c:if>
-			  	</c:forEach>
-			  </tbody>
-			</table>
-			<div class="container-fluid">
-				<div class="row">
-				    <div class="col-xs-12 col-sm-12	">
-						<h3 class="text-info"><spring:message code="HMI.TASKLIST.TEXT.TABLE.DONE" /></h3>
-			     	</div>
-			     </div>
+		  <!-- Tab panes -->
+		  <div class="tab-content">
+		  	<div role="tabpanel" class="tab-pane fade in active" id="inprogress">
+				<table class="table table-striped"  style="font-size: medium;">
+				  <thead>
+				  	<tr>
+				  		<th>#</th>
+				  		<th><spring:message code="HMI.TASK.FORM.PLACEHOLDER.NAME" /></th>
+				  		<th class="hidden-xs"><spring:message code="HMI.TASK.FORM.PLACEHOLDER.DESCRIPTION" /></th>
+				  		<th><spring:message code="HMI.TASK.FORM.PLACEHOLDER.DEADLINE" /></th>
+				  		<th><spring:message code="HMI.TASK.FORM.PLACEHOLDER.STATE" /></th>
+				  		<th class="hidden-xs"><spring:message code="HMI.TASK.FORM.PLACEHOLDER.LASTUPDATE" /></th>
+				  		<th><spring:message code="HMI.TASK.FORM.PLACEHOLDER.ACTIONS" /></th>
+				  	</tr>
+				  </thead>
+				  <tbody id="taskNotDoneList-tbody">
+				  	<c:forEach items="${aTaskList }" var="TaskObject">
+				  		<c:if test="${!empty TaskObject }">
+					  		<tr id="taskListRow" data-task-id="<c:out value="${TaskObject.id }" />">
+						  		<td class="vert-align"><a href='<c:url value="/taskDetails?taskId=${TaskObject.id }" />'><c:out value="${TaskObject.id }" /></a></td>
+						  		<td class="vert-align"><a href='<c:url value="/taskDetails?taskId=${TaskObject.id }" />'><c:out value="${TaskObject.name }" /></a></td>
+						  		<td class="vert-align hidden-xs"><c:choose>
+							  				<c:when test="${fn:length(TaskObject.description)>25}">
+							  					<c:out value="${fn:substring(TaskObject.description,0,22) }..." />
+							  				</c:when>
+							  				<c:otherwise>
+							  					<c:out value="${TaskObject.description}" />
+							  				</c:otherwise>
+							  			</c:choose></td>
+						  		<td class="vert-align"><joda:format value="${TaskObject.deadline }" pattern="dd MMM yyyy HH:mm"/></td>
+								<c:choose>
+									<c:when test="${TaskObject.state == initParam.sTaskStateSuccess }">
+						  				<td id="taskListRow-State" class="vert-align"><span data-task-state="Done" class="label label-success"><spring:message code="Task.data.state.success" /></span></td>
+									</c:when>
+									<c:when test="${TaskObject.state == initParam.sTaskStateWarning }">
+						  				<td id="taskListRow-State" class="vert-align"><span data-task-state="To do" class="label label-primary"><spring:message code="Task.data.state.warning" /></span></td>
+									</c:when>
+									<c:when test="${TaskObject.state == initParam.sTaskStateDanger }">
+						  				<td id="taskListRow-State" class="vert-align"><span data-task-state="Urgent" class="label label-danger"><spring:message code="Task.data.state.danger" /></span></td>
+									</c:when>
+									<c:otherwise>
+						  				<td id="taskListRow-State" class="vert-align"><span data-task-state="None" class="label label-info"><spring:message code="Task.data.state.none" /></span></td>
+									</c:otherwise>
+								</c:choose>
+						  		<td class="vert-align hidden-xs"><joda:format value="${TaskObject.created }" pattern="dd MMM yyyy"/></td>
+						  		<td class="vert-align">
+									  <button onClick="doit_updateTaskListState(<c:out value="${TaskObject.id }" />,'Done');" type="button" class="btn btn-no-bck btn-xs text-success"><span class="glyphicon glyphicon-ok"></span></button>
+									  <button type="button" class="btn btn-no-bck btn-xs text-warning" onClick="doit_displayTaskStateEditorForList(<c:out value="${TaskObject.id }" />);"><span class="glyphicon glyphicon-info-sign"></span></button>
+									  <a href='<c:url value="/updateTask?taskId=${TaskObject.id }" />'  class="btn btn-no-bck btn-xs text-warning"><span class="glyphicon glyphicon-pencil"></span></a>
+									  <a href='<c:url value="/deleteTask?taskId=${TaskObject.id }" />' onClick="return confirm('Do you really want to remove this Task?');" class="btn btn-no-bck btn-xs text-danger"><span class="glyphicon glyphicon-remove"></span></a>
+								</td>
+						  	</tr>
+				  		</c:if>
+				  	</c:forEach>
+				  </tbody>
+				</table>
 			</div>
+		  	<div role="tabpanel" class="tab-pane fade" id="done">
 				<table class="table table-striped"  style="font-size: medium;">
 				  <thead>
 				  	<tr>
@@ -170,6 +172,9 @@
 				  	</c:forEach>
 				  </tbody>
 				</table>
+				</div>
+			</div>
+			</div>
 		</c:when>
 		<c:otherwise>
 			<div class="container-fluid">
